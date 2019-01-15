@@ -1,0 +1,65 @@
+Liste des classes à faiire avec leurs attributs :
+
+CompagnieAerienne
+	private long id;
+	private String nom;
+	private List<CompagnieAerienneVol> compagniesAerienneVol
+
+CompagnieAerienneVol :
+	private CompagnieAerienneVolPK key;
+	private String numero;
+
+CompagnieAerienneVolPK : 
+	private CompagnieAerienne compagnieAerienne;
+	private Vol vol;
+
+Vol :
+	private long id;
+	private Depart depart:
+	private Arrivee arrivee;
+	private List<Escale> escales;
+	private List<CompagnieAerienneVol> compagniesAerienneVol;
+	private Reservation reservation;
+
+Depart : 
+	private Date dateDepart;
+	private Date heureDepart;
+
+Arrivee : 
+	private Date dateArrivee;
+	private Date heureArrivee;
+
+Escale :
+	private EscalePK key;
+	private Date heureDepart;
+	private Date heureArrivee;
+
+EscalePK :
+	private Aeroport aeroport;
+	private Vol vol;
+
+Aeroport :
+	private Long id;
+	private String nom;
+	private List<Vol> vols
+	private List<Ville> villes;
+
+Ville : 
+	private Long id;
+	private String nom;
+	private List<Aeroport> aeroports;
+
+Reservation : 
+	private Long id;
+	private Date date;
+	private Integer numero;
+	private Personne personne;
+	private Vol vol;
+
+Personne : 
+	private Long id;
+	private String nom;
+	private Adresse adresse;
+	
+Passager (inheritance de Personne) :
+	
