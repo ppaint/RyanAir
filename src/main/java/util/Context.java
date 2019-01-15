@@ -7,7 +7,7 @@ public class Context {
 	
 	public static EntityManagerFactory getEntityManagerFactory() {
 		if(emf == null) {
-			emf = Persistence.createEntityManagerFactory("JPAmaventest");
+			emf = Persistence.createEntityManagerFactory("RyanAir");
 		}
 		return emf;
 	}

@@ -12,15 +12,15 @@
 			<property name="hibernate.connection.user" value="postgres"/>
 			<property name="hibernate.connection.password" value="root" />
 
-			<!-- Permet d'exécuter les requêtes DDL pour la génération de la base 
-				de données -->
+			<!-- Permet d'executer les requetes DDL pour la  generation de la base 
+				de donnees -->
 			<!-- Valeurs possibles : validate, update, create, create-drop -->
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 
 			<!-- On utilise le dialecte de PostgreSQL -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect" />
 
-			<!-- On imprime les requêtes SQL générées par Hibernate dans la console -->
+			<!-- On imprime les requetes SQL generees par Hibernate dans la console -->
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 		</properties>
