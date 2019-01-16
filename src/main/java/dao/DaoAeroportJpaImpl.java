@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Aeroport;
+import model.Ville;
 import model.Vol;
 import util.Context;
 
@@ -112,10 +113,22 @@ class DaoAeroportJpaImpl implements  DaoAeroport{
 		EntityTransaction tx=null;
 		List<Aeroport> aeroports = null;
 		
-		Query query = em.createQuery("from Aeroport a left join fetch a.volsArrivee v where v.id=?1 ");
+		Query query = em.createQuery("from Aeroport a lef join fetch a.volsArrivee v where v.id=?1 ");
 		query.setParameter(1, v.getId());
 		aeroports = query.getResultList();
 		return aeroports;
 		
 	}
-}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ville> findVille(Aeroport a) {
+		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
+		EntityTransaction tx=null;
+		List<Ville> villes = null;
+		
+		Query query = em.createQuery("select v from Ville v join Aeroport a where a.id=?1 ");
+		query.setParameter(1, a.getId());
+		villes = query.getResultList();
+		return villes;
+	}
+	}
