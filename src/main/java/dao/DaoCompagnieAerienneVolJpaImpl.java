@@ -6,35 +6,37 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import model.Vol;
+import model.CompagnieAerienneVol;
+import model.CompagnieAerienneVolPk;
 import util.Context;
 
-public class DaoVolJpaImpl implements DaoVol{
+public class DaoCompagnieAerienneVolJpaImpl implements DaoCompagnieAerienneVol {
 
 	@Override
-	public List<Vol> findAll() {
+	public List<CompagnieAerienneVol> findAll() {
 		// TODO Auto-generated method stub
-		List<Vol> vols = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Vol v");
-		vols = query.getResultList();
 
-		return vols;
+		List<CompagnieAerienneVol> compagniesAerienneVol = null;
+		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
+		Query query = em.createQuery("from CompagnieAerienneVol c");
+		compagniesAerienneVol = query.getResultList();
+
+		return compagniesAerienneVol;
 	}
 
 	@Override
-	public Vol findByKey(Long key) {
+	public CompagnieAerienneVol findByKey(CompagnieAerienneVolPk key) {
 		// TODO Auto-generated method stub
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Vol v = null;
-		v = em.find(Vol.class, key);
+		CompagnieAerienneVol c = null;
+		c = em.find(CompagnieAerienneVol.class, key);
 		em.close();
-		return v;
+		return c;
 
 	}
 
 	@Override
-	public void insert(Vol obj) {
+	public void insert(CompagnieAerienneVol obj) {
 		// TODO Auto-generated method stub
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
@@ -53,15 +55,15 @@ public class DaoVolJpaImpl implements DaoVol{
 	}
 
 	@Override
-	public Vol update(Vol obj) {
+	public CompagnieAerienneVol update(CompagnieAerienneVol obj) {
 		// TODO Auto-generated method stub
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Vol vol=null;
+		CompagnieAerienneVol compagnieAerienneVol = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			vol=em.merge(obj);
+			compagnieAerienneVol = em.merge(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,11 +72,11 @@ public class DaoVolJpaImpl implements DaoVol{
 			}
 		}
 		em.close();
-		return vol;
+		return compagnieAerienneVol;
 	}
 
 	@Override
-	public void delete(Vol obj) {
+	public void delete(CompagnieAerienneVol obj) {
 		// TODO Auto-generated method stub
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
@@ -92,16 +94,15 @@ public class DaoVolJpaImpl implements DaoVol{
 		em.close();
 	}
 
-
 	@Override
-	public void deleteByKey(Long key) {
+	public void deleteByKey(CompagnieAerienneVolPk key) {
 		// TODO Auto-generated method stub
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(em.find(Vol.class, key));
+			em.remove(em.find(CompagnieAerienneVol.class, key));
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,51 +112,5 @@ public class DaoVolJpaImpl implements DaoVol{
 		}
 		em.close();
 	}
-	
-	public List<Vol> findEscaleByKeyWithVol(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
-		Query query=em.createQuery("select distinct v from Vol v left join fetch v.escales where v.id=:key");
-		query.setParameter("key", key);
-		List<Vol> v=null;
-
-		v=query.getResultList();
-		
-		em.close();
-		return v;
-		
-	}
-	
-	public List<Vol> findCompagnieByKeyWithVol(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
-		Query query=em.createQuery("select distinct v from Vol v left join fetch v.compagniesAerienneVol where v.id=:key");
-		query.setParameter("key", key);
-		List<Vol> v=null;
-
-		v=query.getResultList();
-		
-		em.close();
-		return v;
-		
-	}
-	
-	public List<Vol> findReservationByKeyWithVol(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
-		Query query=em.createQuery("select distinct v from Vol v left join fetch v.reservations where v.id=:key");
-		query.setParameter("key", key);
-		List<Vol> v=null;
-
-		v=query.getResultList();
-		
-		em.close();
-		return v;
-		
-	}
-	
-	
-	
-	
-	
-	
-	
 
 }
