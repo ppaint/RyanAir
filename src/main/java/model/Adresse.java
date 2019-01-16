@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Adresse {
-	private Integer numero;
+	private String pays;
 	@Column(name = "rue", length = 200)
 	private String rue;
 	@Column(name = "code_postal", length = 5)
@@ -16,20 +16,20 @@ public class Adresse {
 	public Adresse() {
 	}
 
-	public Adresse(Integer numero, String rue, String codePostal, String ville) {
+	public Adresse(String pays, String rue, String codePostal, String ville) {
 		super();
-		this.numero = numero;
+		this.pays = pays;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
 
-	public Integer getNumero() {
-		return numero;
+	public String getpays() {
+		return pays;
 	}
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setpays(String pays) {
+		this.pays = pays;
 	}
 
 	public String getRue() {
@@ -61,7 +61,7 @@ public class Adresse {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codePostal == null) ? 0 : codePostal.hashCode());
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((pays == null) ? 0 : pays.hashCode());
 		result = prime * result + ((rue == null) ? 0 : rue.hashCode());
 		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
 		return result;
@@ -81,10 +81,10 @@ public class Adresse {
 				return false;
 		} else if (!codePostal.equals(other.codePostal))
 			return false;
-		if (numero == null) {
-			if (other.numero != null)
+		if (pays == null) {
+			if (other.pays != null)
 				return false;
-		} else if (!numero.equals(other.numero))
+		} else if (!pays.equals(other.pays))
 			return false;
 		if (rue == null) {
 			if (other.rue != null)
