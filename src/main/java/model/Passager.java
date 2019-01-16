@@ -12,16 +12,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "adherent")
-@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_person", allocationSize = 1, initialValue = 100)
-public class Personne {
+@Table(name = "passenger")
+@SequenceGenerator(name = "seqPassager", sequenceName = "seq_passenger", allocationSize = 1, initialValue = 100)
+public class Passager {
 	
 	// ------------------ Attributs --------------------------- //
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPersonne")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPassager")
 	@Column(name = "person_number")
 	private Long id;
+	
+	
+	@Column(name = "first_name", length = 150, nullable = false)
+	private String prenom;
 	
 	
 	@Column(name = "last_name", length = 150, nullable = false)
@@ -29,7 +33,7 @@ public class Personne {
 	
 	
 	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "number")),
+	@AttributeOverrides({ @AttributeOverride(name = "pays", column = @Column(name = "country")),
 			@AttributeOverride(name = "rue", column = @Column(name = "street", length = 150)),
 			@AttributeOverride(name = "codePostal", column = @Column(name = "zip_code", length = 5)),
 			@AttributeOverride(name = "ville", column = @Column(name = "city", length = 150)) })
@@ -39,17 +43,20 @@ public class Personne {
 	
 	// ------------------ Constructeurs --------------------------- //
 
-	public Personne() {
+	public Passager() {
 	}
 
 
-	public Personne(String nom, Adresse adresse) {
-		super();	
+	public Passager(String prenom, String nom, Adresse adresse) {
+		super();
+		this.prenom = prenom;
 		this.nom = nom;
 		this.adresse = adresse;
 	}
 
-	
+
+
+
 	// ------------------ Methodes --------------------------- //
 
 	public Long getId() {
@@ -59,6 +66,16 @@ public class Personne {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 
@@ -99,7 +116,7 @@ public class Personne {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Personne other = (Personne) obj;
+		Passager other = (Passager) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

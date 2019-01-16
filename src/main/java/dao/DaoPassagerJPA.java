@@ -6,36 +6,36 @@ import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import model.Personne;
+import model.Passager;
 import util.Context;
 
-class DaoPersonneJPA implements DaoPersonne {
+class DaoPassagerJPA implements DaoPassager {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Personne> findAll() {
-		List<Personne> Personnes = null;
+	public List<Passager> findAll() {
+		List<Passager> Passagers = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("select a from Personne a");
-		Personnes = query.getResultList();
+		Query query = em.createQuery("select a from Passager a");
+		Passagers = query.getResultList();
 		
-		return Personnes;
+		return Passagers;
 	}
 
 	@Override
-	public Personne findByKey(Integer key) {
+	public Passager findByKey(Integer key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Personne f = null;
+		Passager f = null;
 		EntityTransaction tx = null;
 		tx = em.getTransaction();
 		tx.begin();
-		em.find(Personne.class, key);
+		em.find(Passager.class, key);
 		tx.commit();
 		em.close();
 		return f;	}
 
 	@Override
-	public void insert(Personne obj) {
+	public void insert(Passager obj) {
 			EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 			EntityTransaction tx = null ;
 			try {
@@ -53,14 +53,14 @@ class DaoPersonneJPA implements DaoPersonne {
 		}
 
 	@Override
-	public Personne update(Personne obj) {
+	public Passager update(Passager obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Personne Personne = null;
+		Passager Passager = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			Personne = em.merge(obj);
+			Passager = em.merge(obj);
 			tx.commit();
 		} catch(Exception e) {
 			if (tx != null && tx.isActive()) {
@@ -69,11 +69,11 @@ class DaoPersonneJPA implements DaoPersonne {
 			}
 		}
 		em.close();
-		return Personne;
+		return Passager;
 	}
 
 	@Override
-	public void delete(Personne obj) {
+	public void delete(Passager obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -97,7 +97,7 @@ class DaoPersonneJPA implements DaoPersonne {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(em.find(Personne.class, key));
+			em.remove(em.find(Passager.class, key));
 			tx.commit();
 		} catch(Exception e) {
 			if (tx != null && tx.isActive()) {
