@@ -34,17 +34,17 @@ public class Reservation {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "passenger",nullable = false)
+	@JoinColumn(name = "passenger")
 	private Passager passager;
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "client", nullable = false)
+	@JoinColumn(name = "client")
 	private Client client;
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "fly", nullable = true)
+	@JoinColumn(name = "fly")
 	private Vol vol;
 
 
@@ -55,11 +55,10 @@ public class Reservation {
 	}
 
 
-	public Reservation(Date date, Integer numero, Vol vol) {
+	public Reservation(Date date, Integer numero) {
 		super();
 		this.date = date;
 		this.numero = numero;
-		this.vol = vol;
 	}
 
 

@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import model.Client;
+import model.Login;
+import model.Reservation;
 import util.Context;
 
 class DaoClientJPA implements DaoClient {
@@ -23,13 +25,13 @@ class DaoClientJPA implements DaoClient {
 	}
 
 	@Override
-	public Client findByKey(Integer key) {
+	public Client findByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Client f = null;
 		EntityTransaction tx = null;
 		tx = em.getTransaction();
 		tx.begin();
-		em.find(Client.class, key);
+		f = em.find(Client.class, key);
 		tx.commit();
 		em.close();
 		return f;	}
@@ -56,11 +58,11 @@ class DaoClientJPA implements DaoClient {
 	public Client update(Client obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Client Client = null;
+		Client client = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			Client = em.merge(obj);
+			client = em.merge(obj);
 			tx.commit();
 		} catch(Exception e) {
 			if (tx != null && tx.isActive()) {
@@ -69,7 +71,7 @@ class DaoClientJPA implements DaoClient {
 			}
 		}
 		em.close();
-		return Client;
+		return client;
 	}
 
 	@Override
@@ -79,6 +81,22 @@ class DaoClientJPA implements DaoClient {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
+			obj = em.merge(obj);
+			if(obj.getLogin() != null) {
+				Login l = em.find(Login.class, obj.getLogin().getId());
+				if (l != null) {
+					em.remove(l);
+				}
+			}
+			if(obj.getReservations()!= null) {
+				for(int i=0; i<obj.getReservations().size(); i++) {
+			
+					Reservation r = em.find(Reservation.class, obj.getReservations().get(i).getId());
+					if (r != null) {
+						em.remove(r);
+					}
+				}
+			}
 			em.remove(em.merge(obj));
 			tx.commit();
 		} catch(Exception e) {
@@ -91,7 +109,7 @@ class DaoClientJPA implements DaoClient {
 	}
 
 	@Override
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {

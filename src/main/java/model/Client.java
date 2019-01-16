@@ -1,7 +1,7 @@
 package model;
 
-import java.util.Set;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -58,7 +58,7 @@ public abstract class Client {
 	private Adresse adresse;
 	
 	@OneToMany(mappedBy = "client")
-	private Set<Reservation> reservations;
+	private List<Reservation> reservations = new ArrayList<>();
 	
 	@OneToOne
 	private Login login;
@@ -84,6 +84,10 @@ public abstract class Client {
 
 	// ------------------ Methodes --------------------------- //
 
+	public void addReservation (Reservation r) {
+		this.reservations.add(r);
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -144,12 +148,12 @@ public abstract class Client {
 	}
 
 
-	public Set<Reservation> getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
 
-	public void setReservations(Set<Reservation> reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 
