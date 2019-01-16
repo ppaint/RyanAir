@@ -27,10 +27,10 @@ public class Vol {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqVol")
 	@Column(name = "id_vol")
 	private long id;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIME)
 	@Column(name="heure_depart")
 	private Date heureDepart;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIME)
 	@Column(name="heure_arrivee")
 	private Date heureArrivee;
 	@Temporal(TemporalType.DATE)

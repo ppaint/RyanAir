@@ -7,9 +7,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Aeroport;
+import model.Vol;
 import util.Context;
 
-public class DaoAeroportJpaImpl implements  DaoAeroport{
+class DaoAeroportJpaImpl implements  DaoAeroport{
 
 	@Override
 	public List<Aeroport> findAll() {
@@ -22,7 +23,7 @@ public class DaoAeroportJpaImpl implements  DaoAeroport{
 	}
 
 	@Override
-	public Aeroport findByKey(Integer key) {
+	public Aeroport findByKey(Long key) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
 		Aeroport p =null;
 		p=em.find(Aeroport.class, key);
@@ -58,7 +59,7 @@ public class DaoAeroportJpaImpl implements  DaoAeroport{
 		try {
 			tx=em.getTransaction();
 			tx.begin();
-			em.merge(obj);;
+			aeroport = em.merge(obj);;
 			tx.commit();
 			
 		}catch (Exception e) {
@@ -88,7 +89,7 @@ public class DaoAeroportJpaImpl implements  DaoAeroport{
 	}
 
 	@Override
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx=null;
 		try {
@@ -105,4 +106,16 @@ public class DaoAeroportJpaImpl implements  DaoAeroport{
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Aeroport> findAeroportsByVolArrive(Vol v) {
+		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
+		EntityTransaction tx=null;
+		List<Aeroport> aeroports = null;
+		
+		Query query = em.createQuery("from Aeroport a left join fetch a.volsArrivee v where v.id=?1 ");
+		query.setParameter(1, v.getId());
+		aeroports = query.getResultList();
+		return aeroports;
+		
+	}
 }

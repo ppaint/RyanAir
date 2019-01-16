@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import model.Ville;
 import util.Context;
 
-public class DaoVilleJpaImpl implements DaoVille{
+class DaoVilleJpaImpl implements DaoVille{
 
 	@Override
 	public List<Ville> findAll() {
@@ -24,7 +24,7 @@ public class DaoVilleJpaImpl implements DaoVille{
 	
 
 	@Override
-	public Ville findByKey(Integer key) {
+	public Ville findByKey(Long key) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
 		Ville p =null;
 		p=em.find(Ville.class, key);
@@ -60,7 +60,7 @@ public class DaoVilleJpaImpl implements DaoVille{
 		try {
 			tx=em.getTransaction();
 			tx.begin();
-			em.merge(obj);;
+			ville = em.merge(obj);;
 			tx.commit();
 			
 		}catch (Exception e) {
@@ -89,7 +89,7 @@ public class DaoVilleJpaImpl implements DaoVille{
 	}
 
 	@Override
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx=null;
 		try {
