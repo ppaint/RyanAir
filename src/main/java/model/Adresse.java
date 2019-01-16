@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Version;
 
 @Embeddable
 public class Adresse {
@@ -12,6 +13,7 @@ public class Adresse {
 	private String codePostal;
 	@Column(name = "ville", length = 150)
 	private String ville;
+
 
 	public Adresse() {
 	}
@@ -55,6 +57,15 @@ public class Adresse {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+
 
 	@Override
 	public int hashCode() {

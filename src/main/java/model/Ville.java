@@ -1,9 +1,9 @@
 package model;
 
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.Set;
-import java.util.List;
+
 
 
 import javax.persistence.Column;
@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="ville")
@@ -28,7 +29,9 @@ public class Ville {
 	private String nom;
 	@ManyToMany
 	@JoinTable(name="villeaeroport", joinColumns=@JoinColumn(name="ville_id"), inverseJoinColumns=@JoinColumn(name="aeroport_id"))
-	private Set<Aeroport> aeroports;
+	private Set<Aeroport> aeroports= new HashSet<>();
+	@Version
+	private int version;
 	
 	public Long getId() {
 		return id;
@@ -48,13 +51,20 @@ public class Ville {
 	public void setAeroports(Set<Aeroport> aeroports) {
 		this.aeroports = aeroports;
 	}
-	public Ville(String nom, Set<Aeroport> aeroports) {
+	public Ville(String nom) {
 		super();
 		this.nom = nom;
-		this.aeroports = aeroports;
 	}
 	public Ville() {
 		super();
+	}
+	
+	
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	@Override
 	public int hashCode() {
@@ -80,6 +90,8 @@ public class Ville {
 		return true;
 	}
 	
-	
+	public void addAeroport (Aeroport a) {
+		this.aeroports.add(a);
+	}
 
 }

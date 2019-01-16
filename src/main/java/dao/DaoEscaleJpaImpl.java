@@ -6,34 +6,34 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
-import model.Ville;
+import model.Aeroport;
+import model.Escale;
 import util.Context;
 
-public class DaoVilleJpaImpl implements DaoVille{
+public class DaoEscaleJpaImpl implements DaoEscale {
 
 	@Override
-	public List<Ville> findAll() {
-		List<Ville> villes = null;
+	public List<Escale> findAll() {
+		List<Escale> escales = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Query query = em.createQuery("from Aeroport a");
-		villes = query.getResultList();
+		escales = query.getResultList();
 		em.close();
-		return villes;
+		return escales;
 	}
-	
 
 	@Override
-	public Ville findByKey(Integer key) {
+	public Escale findByKey(Integer key) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		Ville p =null;
-		p=em.find(Ville.class, key);
+		Escale p =null;
+		p=em.find(Escale.class, key);
 		em.close();
 		return p;
 	}
 
 	@Override
-	public void insert(Ville obj) {
+	public void insert(Escale obj) {
+		Escale escale = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		
@@ -47,13 +47,12 @@ public class DaoVilleJpaImpl implements DaoVille{
 			e.printStackTrace();
 			tx.rollback();
 		}
-		em.close();	
-		
+		em.close();
 	}
 
 	@Override
-	public Ville update(Ville obj) {
-		Ville ville = null;
+	public Escale update(Escale obj) {
+		Escale escale = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		
@@ -68,11 +67,11 @@ public class DaoVilleJpaImpl implements DaoVille{
 			tx.rollback();
 		}
 		em.close();		
-	return ville;
+	return escale;
 	}
 
 	@Override
-	public void delete(Ville obj) {
+	public void delete(Escale obj) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx=null;
 		try {
@@ -95,7 +94,7 @@ public class DaoVilleJpaImpl implements DaoVille{
 		try {
 			tx=em.getTransaction();
 			tx.begin();
-			em.remove(em.find(Ville.class, key));
+			em.remove(em.find(Escale.class, key));
 			tx.commit();
 		}catch (Exception e ) {
 			e.printStackTrace();

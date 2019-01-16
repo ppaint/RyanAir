@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="escale")
@@ -21,6 +22,8 @@ public class Escale {
 	@Temporal(TemporalType.TIME)
 	@Column(name="heure_arrivee")
 	private Date heureArrivee;
+	@Version
+	private int version;
 	
 	public EscalePk getKey() {
 		return key;
@@ -42,6 +45,12 @@ public class Escale {
 	}
 	public Escale() {
 		super();
+	}
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	
