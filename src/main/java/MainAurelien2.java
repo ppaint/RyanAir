@@ -4,11 +4,19 @@ import java.util.Date;
 
 import dao.DaoAeroport;
 import dao.DaoAeroportFactory;
+import dao.DaoClient;
+import dao.DaoClientFactory;
+import dao.DaoReservation;
+import dao.DaoReservationFactory;
 import dao.DaoVille;
 import dao.DaoVilleFactory;
 import dao.DaoVol;
 import dao.DaoVolFactory;
+import model.Adresse;
 import model.Aeroport;
+import model.ClientEI;
+import model.Reservation;
+import model.TitrePhysique;
 import model.Ville;
 import model.Vol;
 import util.Context;
@@ -60,9 +68,29 @@ public class MainAurelien2 {
 //		System.out.println("--------------------vol--------------------");
 		DaoVol.insert(vo);
 		DaoVille.insert(v);
-
-		System.out.println(daoAeroport.findAeroportsByVolArrive(vo));
 		
+//		System.out.println(daoAeroport.findAeroportsByVolArrive(vo));
+//		
+//		
+		ClientEI ei = new ClientEI("desplas", "desplas", "desplas", "desplas", new Adresse( "desplas", "desplas", "desplas", "desplas"), "desplas", TitrePhysique.M);
+		DaoClient DaoClient = DaoClientFactory.getInstance();
+		DaoClient.insert(ei);
+		
+//		Reservation r = new Reservation(q, 5, vo);
+//		DaoReservation daoReservation = DaoReservationFactory.getInstance();
+//		
+//		daoReservation.insert(r);
+		System.out.println("--------------------vol--------------------");
+		System.out.println(daoAeroport.findVille(a));
+		
+		
+		Context.close();
+		
+		
+
+		
+		
+	
 		
 //		v.setNom("Paris");
 //		a.setNom("LLLLLL");
@@ -74,7 +102,7 @@ public class MainAurelien2 {
 //		daoAeroport.delete(a);
 		
 		
-		Context.close();
+	
 		
 
 

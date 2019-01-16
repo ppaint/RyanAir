@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import model.ClientEI;
+import model.Reservation;
 import model.Vol;
 import util.Context;
 
@@ -153,7 +155,14 @@ public class DaoVolJpaImpl implements DaoVol{
 	
 	
 	
-	
+	public Reservation findClientEIByVol (Vol v) {
+		Reservation c = null;
+		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
+		Query query = em.createQuery("select r from Reservation r where r.id=?1");
+		query.setParameter(1, v.getId());
+		c = (Reservation) query.getSingleResult();
+		return c;
+	}
 	
 	
 	
