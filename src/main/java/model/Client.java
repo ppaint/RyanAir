@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -47,7 +50,8 @@ public class Client {
 			@AttributeOverride(name = "ville", column = @Column(name = "city", length = 150)) })
 	private Adresse adresse;
 	
-	
+	@OneToMany(mappedBy = "client")
+	private Set<Reservation> reservations;
 	
 	// ------------------ Constructeurs --------------------------- //
 
