@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 
 public class DaoAeroportFactory {
 
@@ -6,7 +6,7 @@ public class DaoAeroportFactory {
 	
 	public static DaoAeroport getInstance() {
 		if(singleton==null) {
-			singleton = new DaoAeroportJpaImpl;
+			singleton = new DaoAeroportJpaImpl();
 		}return singleton;
 	}
 }
