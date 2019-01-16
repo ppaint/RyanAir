@@ -6,15 +6,9 @@ import model.Adresse;
 import model.Aeroport;
 import model.Client;
 import model.Ville;
-import src.main.java.ClientEI;
-import src.main.java.DaoClient;
-import src.main.java.DaoLogin;
-import src.main.java.Login;
 import util.Context;
 
 public class AppTestAurelien {
-
-	public class Apptest {
 
 		public static void main(String[] args) {
 			DaoVille DaoVille = DaoVilleFactory.getInstance();
@@ -41,6 +35,5 @@ public class AppTestAurelien {
 			
 			
 
-	}
 	}
 }
