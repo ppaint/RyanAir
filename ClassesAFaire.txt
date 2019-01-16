@@ -62,4 +62,37 @@ Personne :
 	private Adresse adresse;
 	
 Passager (inheritance de Personne) :
-	
+	private String prenom;
+	private Reservation reservation;
+
+Client (inheritance de Personne) : 
+	private Integer numeroTel;
+	private Integer numeroFax;
+	private String email;
+	private Reservation;
+	private Login login;
+
+ClientPhysique (inheritance de Client) :
+	private TitrePhysique titrePhysique;
+	private String prenom;
+
+ClientMoral (inheritance de Client) :
+	private TitreMoral titreMoral;
+	private String siret
+
+ClientEI (inheritance de Client) :
+	private TitrePhysique titrePhysique;
+	private String prenom;
+
+Login :
+	private Long id;
+	private String login;
+	private String motDePasse;
+	private Boolean admin;
+	private Client client;
+
+TitrePhysique(Enum) :
+	M/MME/MLLE;
+
+TitreMoral(enum) :
+	Etat/CollectiviteTerritoriale/societe/Association/CE/CHSCT;
