@@ -1,6 +1,11 @@
 package model;
 
+<<<<<<< HEAD
+import java.util.Set;
+import java.util.Set;
+=======
 import java.util.List;
+>>>>>>> c68065b1a213b6f7038f788a6cee091ec420cd45
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +29,7 @@ public class Ville {
 	private String nom;
 	@ManyToMany
 	@JoinTable(name="villeaeroport", joinColumns=@JoinColumn(name="ville_id"), inverseJoinColumns=@JoinColumn(name="aeroport_id"))
-	private List<Aeroport> aeroports;
+	private Set<Aeroport> aeroports;
 	
 	public Long getId() {
 		return id;
@@ -38,13 +43,13 @@ public class Ville {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public List<Aeroport> getAeroports() {
+	public Set<Aeroport> getAeroports() {
 		return aeroports;
 	}
-	public void setAeroports(List<Aeroport> aeroports) {
+	public void setAeroports(Set<Aeroport> aeroports) {
 		this.aeroports = aeroports;
 	}
-	public Ville(String nom, List<Aeroport> aeroports) {
+	public Ville(String nom, Set<Aeroport> aeroports) {
 		super();
 		this.nom = nom;
 		this.aeroports = aeroports;
