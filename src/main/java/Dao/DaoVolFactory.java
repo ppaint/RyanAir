@@ -6,7 +6,7 @@ public class DaoVolFactory {
 	
 	public static DaoVol getInstance() {
 		if(singleton==null) {
-			singleton = new DaoVolJpaImpl;
+			singleton = new DaoVolJpaImpl();
 		}return singleton;
 	}
 }

@@ -6,7 +6,7 @@ public class DaoVilleFactory {
 	
 	public static DaoVille getInstance() {
 		if(singleton==null) {
-			singleton = new DaoVilleJpaImpl;
+			singleton = new DaoVilleJpaImpl();
 		}return singleton;
 	}
 }
