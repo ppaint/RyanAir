@@ -1,4 +1,6 @@
-package Dao;
+package dao;
+
+import model.Aeroport;
 
 import model.Aeroport;
 
