@@ -6,34 +6,33 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
-import model.Ville;
+import model.Aeroport;
 import util.Context;
 
-public class DaoVilleJpaImpl implements DaoVille{
+public class DaoAeroportJpaImpl implements  DaoAeroport{
 
 	@Override
-	public List<Ville> findAll() {
-		List<Ville> villes = null;
+	public List<Aeroport> findAll() {
+		List<Aeroport> aeroports = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Query query = em.createQuery("from Aeroport a");
-		villes = query.getResultList();
+		aeroports = query.getResultList();
 		em.close();
-		return villes;
+		return aeroports;
 	}
-	
 
 	@Override
-	public Ville findByKey(Integer key) {
+	public Aeroport findByKey(Integer key) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		Ville p =null;
-		p=em.find(Ville.class, key);
+		Aeroport p =null;
+		p=em.find(Aeroport.class, key);
 		em.close();
 		return p;
 	}
 
 	@Override
-	public void insert(Ville obj) {
+	public void insert(Aeroport obj) {
+		Aeroport aeroport = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		
@@ -47,13 +46,12 @@ public class DaoVilleJpaImpl implements DaoVille{
 			e.printStackTrace();
 			tx.rollback();
 		}
-		em.close();	
-		
+		em.close();		
 	}
 
 	@Override
-	public Ville update(Ville obj) {
-		Ville ville = null;
+	public Aeroport update(Aeroport obj) {
+		Aeroport aeroport = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		
@@ -68,11 +66,11 @@ public class DaoVilleJpaImpl implements DaoVille{
 			tx.rollback();
 		}
 		em.close();		
-	return ville;
+	return aeroport;
 	}
 
 	@Override
-	public void delete(Ville obj) {
+	public void delete(Aeroport obj) {
 		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx=null;
 		try {
@@ -86,6 +84,7 @@ public class DaoVilleJpaImpl implements DaoVille{
 				tx.rollback();
 			}
 		}em.close();
+		
 	}
 
 	@Override
@@ -95,7 +94,7 @@ public class DaoVilleJpaImpl implements DaoVille{
 		try {
 			tx=em.getTransaction();
 			tx.begin();
-			em.remove(em.find(Ville.class, key));
+			em.remove(em.find(Aeroport.class, key));
 			tx.commit();
 		}catch (Exception e ) {
 			e.printStackTrace();

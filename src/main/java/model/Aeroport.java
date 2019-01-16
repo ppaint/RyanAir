@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="aeroport")
@@ -29,9 +30,16 @@ public class Aeroport {
 		
 		@ManyToMany(mappedBy="aeroports")
 		private List<Ville> villes;
+		@Version
+		private int version;
 		
 		
-		
+		public int getVersion() {
+			return version;
+		}
+		public void setVersion(int version) {
+			this.version = version;
+		}
 		public Long getId() {
 			return id;
 		}
@@ -44,11 +52,18 @@ public class Aeroport {
 		public void setNom(String nom) {
 			this.nom = nom;
 		}
-		public List<Vol> getVols() {
-			return vols;
+
+		public List<Vol> getVolsArrivee() {
+			return volsArrivee;
 		}
-		public void setVols(List<Vol> vols) {
-			this.vols = vols;
+		public void setVolsArrivee(List<Vol> volsArrivee) {
+			this.volsArrivee = volsArrivee;
+		}
+		public List<Vol> getVolsDepart() {
+			return volsDepart;
+		}
+		public void setVolsDepart(List<Vol> volsDepart) {
+			this.volsDepart = volsDepart;
 		}
 		public List<Ville> getVilles() {
 			return villes;
