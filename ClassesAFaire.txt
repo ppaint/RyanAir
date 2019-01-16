@@ -51,17 +51,18 @@ Reservation :
 	private Integer numero;
 	private Personne personne;
 	private Vol vol;
-
-Personne : 
-	private Long id;
-	private String nom;
-	private Adresse adresse;
 	
 Passager (inheritance de Personne) :
 	private String prenom;
+	private Long id;
+	private String nom;
+	private Adresse adresse;
 	private Reservation reservation;
 
 Client (inheritance de Personne) : 
+	private Long id;
+	private String nom;
+	private Adresse adresse;
 	private Integer numeroTel;
 	private Integer numeroFax;
 	private String email;
