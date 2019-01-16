@@ -15,19 +15,15 @@ CompagnieAerienneVolPK :
 
 Vol :
 	private long id;
-	private Depart depart:
-	private Arrivee arrivee;
+	private Date heureDepart:
+	private Date heureArrivee;
+	private Date dateDepart:
+	private Date dateArrivee;
+	private Aeroport arrivee;
+	private Aeroport depart;
 	private List<Escale> escales;
 	private List<CompagnieAerienneVol> compagniesAerienneVol;
-	private Reservation reservation;
-
-Depart : 
-	private Date dateDepart;
-	private Date heureDepart;
-
-Arrivee : 
-	private Date dateArrivee;
-	private Date heureArrivee;
+	private List<Reservation> reservations;
 
 Escale :
 	private EscalePK key;
