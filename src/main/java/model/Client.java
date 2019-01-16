@@ -28,12 +28,16 @@ public class Client {
 	private String nom;
 	
 	
+	@Column(name = "tel_number", length = 150, nullable = false)
+	private String numeroTel;
+	
+	
+	@Column(name = "fax_number", length = 150, nullable = false)
+	private String numerofax;
+	
+	
 	@Column(name = "mail", length = 150, nullable = false)
 	private String email;
-	
-	
-	@Column(name = "last_name", length = 150, nullable = false)
-	private String nom;
 	
 	
 	@Embedded
@@ -50,15 +54,15 @@ public class Client {
 	public Client() {
 	}
 
-
-	public Client(String prenom, String nom, Adresse adresse) {
+	
+	public Client(String nom, String numeroTel, String numerofax, String email, Adresse adresse) {
 		super();
-		this.prenom = prenom;
 		this.nom = nom;
+		this.numeroTel = numeroTel;
+		this.numerofax = numerofax;
+		this.email = email;
 		this.adresse = adresse;
 	}
-
-
 
 
 	// ------------------ Methodes --------------------------- //
@@ -70,16 +74,6 @@ public class Client {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
 	}
 
 
@@ -100,6 +94,36 @@ public class Client {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+
+
+	public String getNumeroTel() {
+		return numeroTel;
+	}
+
+
+	public void setNumeroTel(String numeroTel) {
+		this.numeroTel = numeroTel;
+	}
+
+
+	public String getNumerofax() {
+		return numerofax;
+	}
+
+
+	public void setNumerofax(String numerofax) {
+		this.numerofax = numerofax;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
