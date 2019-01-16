@@ -1,5 +1,8 @@
 package model;
 
+import javax.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("CP")
 public class ClientPhysique extends Client {
 	
 	private String prenom;
@@ -11,6 +14,12 @@ public class ClientPhysique extends Client {
 	
 	public ClientPhysique(String prenom, TitrePhysique titre) {
 		super();
+		this.prenom = prenom;
+		this.titre = titre;
+	}
+
+	public ClientPhysique(String nom, String numeroTel, String numerofax, String email, Adresse adresse, String prenom, TitrePhysique titre){
+		super(nom, numeroTel, numerofax, email, adresse);
 		this.prenom = prenom;
 		this.titre = titre;
 	}
