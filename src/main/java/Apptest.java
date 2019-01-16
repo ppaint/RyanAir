@@ -1,16 +1,20 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import dao.DaoPassager;
 import dao.DaoPassagerFactory;
+import dao.DaoVille;
+import dao.DaoVilleFactory;
 import model.Adresse;
+import model.Aeroport;
 import model.Passager;
 import util.Context;
 
 public class Apptest {
 
 	public static void main(String[] args) {
-		DaoPassager d = DaoPassagerFactory.getInstance();
 		
-		Passager p1 = new Passager("olivier", "gozlan", new Adresse("France", "rue du tir", "75009", "Paris"));
-		d.insert(p1);
+		Context.getEntityManagerFactory();
 		Context.close();
 	}
  

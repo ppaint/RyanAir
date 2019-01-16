@@ -22,8 +22,11 @@ public class Aeroport {
 		private Long id;
 		@Column(name="nom")
 		private String nom;
-		@OneToMany
-		private List<Vol> vols;
+		@OneToMany(mappedBy = "arrivee")
+		private List<Vol> volsArrivee;
+		@OneToMany(mappedBy = "depart")
+		private List<Vol> volsDepart;
+		
 		@ManyToMany(mappedBy="aeroports")
 		private List<Ville> villes;
 		

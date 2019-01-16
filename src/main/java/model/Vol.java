@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,15 +39,18 @@ public class Vol {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_arrivee")
 	private Date dateArrivee;
-	@Column(name="aeroport_arrivee", length =150)
+	@ManyToOne
+	@JoinColumn(name="aeroport_arrivee")
 	private Aeroport arrivee;
-	@Column(name="aeroport_depart", length =150)
+	@ManyToOne
+	@JoinColumn(name="aeroport_depart")
 	private Aeroport depart;
+	
 	@OneToMany(mappedBy = "key.vol")
 	private List<Escale> escales;
 	@OneToMany(mappedBy = "key.vol")
 	private List<CompagnieAerienneVol> compagniesAerienneVol;
-	@OneToMany(mappedBy = "key.vol")
+	@OneToMany(mappedBy = "vol")
 	private List<Reservation> reservations;
 	@Version
 	private int version;

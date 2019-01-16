@@ -1,11 +1,10 @@
 package model;
 
-<<<<<<< HEAD
+
 import java.util.Set;
 import java.util.Set;
-=======
 import java.util.List;
->>>>>>> c68065b1a213b6f7038f788a6cee091ec420cd45
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

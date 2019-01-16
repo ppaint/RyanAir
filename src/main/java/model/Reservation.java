@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -33,17 +34,17 @@ public class Reservation {
 	
 	
 	@ManyToOne
-	@Column(name = "passenger", length = 150, nullable = false)
+	@JoinColumn(name = "passenger",nullable = false)
 	private Passager passager;
 	
 	
 	@ManyToOne
-	@Column(name = "client", length = 150, nullable = false)
+	@JoinColumn(name = "client", nullable = false)
 	private Client client;
 	
 	
 	@ManyToOne
-	@Column(name = "fly", length = 150, nullable = true)
+	@JoinColumn(name = "fly", nullable = true)
 	private Vol vol;
 
 

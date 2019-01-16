@@ -1,0 +1,95 @@
+Liste des classes à faiire avec leurs attributs :
+
+CompagnieAerienne
+	private long id;
+	private String nom;
+	private List<CompagnieAerienneVol> compagniesAerienneVol
+
+CompagnieAerienneVol :
+	private CompagnieAerienneVolPK key;
+	private String numero;
+
+CompagnieAerienneVolPK : 
+	private CompagnieAerienne compagnieAerienne;
+	private Vol vol;
+
+Vol :
+	private long id;
+	private Date heureDepart:
+	private Date heureArrivee;
+	private Date dateDepart:
+	private Date dateArrivee;
+	private Aeroport arrivee;
+	private Aeroport depart;
+	private List<Escale> escales;
+	private List<CompagnieAerienneVol> compagniesAerienneVol;
+	private List<Reservation> reservations;
+
+Escale :
+	private EscalePK key;
+	private Date heureDepart;
+	private Date heureArrivee;
+
+EscalePK :
+	private Aeroport aeroport;
+	private Vol vol;
+
+Aeroport :
+	private Long id;
+	private String nom;
+	private List<Vol> vols
+	private List<Ville> villes;
+
+Ville : 
+	private Long id;
+	private String nom;
+	private List<Aeroport> aeroports;
+
+Reservation : 
+	private Long id;
+	private Date date;
+	private Integer numero;
+	private Personne personne;
+	private Vol vol;
+	
+Passager (inheritance de Personne) :
+	private String prenom;
+	private Long id;
+	private String nom;
+	private Adresse adresse;
+	private Reservation reservation;
+
+Client (inheritance de Personne) : 
+	private Long id;
+	private String nom;
+	private Adresse adresse;
+	private Integer numeroTel;
+	private Integer numeroFax;
+	private String email;
+	private Reservation;
+	private Login login;
+
+ClientPhysique (inheritance de Client) :
+	private TitrePhysique titrePhysique;
+	private String prenom;
+
+ClientMoral (inheritance de Client) :
+	private TitreMoral titreMoral;
+	private String siret
+
+ClientEI (inheritance de Client) :
+	private TitrePhysique titrePhysique;
+	private String prenom;
+
+Login :
+	private Long id;
+	private String login;
+	private String motDePasse;
+	private Boolean admin;
+	private Client client;
+
+TitrePhysique(Enum) :
+	M/MME/MLLE;
+
+TitreMoral(enum) :
+	Etat/CollectiviteTerritoriale/societe/Association/CE/CHSCT;
