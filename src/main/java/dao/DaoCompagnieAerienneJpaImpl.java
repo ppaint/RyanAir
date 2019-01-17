@@ -1,13 +1,15 @@
 package dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
 import model.CompagnieAerienne;
+import model.CompagnieAerienneVol;
+import model.CompagnieAerienneVolPk;
 import model.Vol;
 import util.Context;
 
@@ -59,11 +61,11 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 		// TODO Auto-generated method stub
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		CompagnieAerienne compagnieAerienne=null;
+		CompagnieAerienne compagnieAerienne = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			compagnieAerienne=em.merge(obj);
+			compagnieAerienne = em.merge(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,12 +80,21 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 	@Override
 	public void delete(CompagnieAerienne obj) {
 		// TODO Auto-generated method stub
+
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
+		em.getTransaction().begin();
+		Query query = em.createQuery("delete from CompagnieAerienneVol c where c.key.compagnieAerienne=:key");
+		query.setParameter("key", obj);
+		query.executeUpdate();
+		em.getTransaction().commit();
+		em.close();
+		
+		EntityManager em2 = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
-			tx = em.getTransaction();
+			tx = em2.getTransaction();
 			tx.begin();
-			em.remove(em.merge(obj));
+			em2.remove(em2.merge(obj));
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,8 +102,20 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 				tx.rollback();
 			}
 		}
-		em.close();
+		em2.close();
 	}
+
+	/*
+	 * EntityManager em = Context.getEntityManagerFactory().createEntityManager();
+	 * EntityTransaction tx = null; CompagnieAerienne compagnieAerienne = null;
+	 * //CompagnieAerienneVol compagnieAerienneVol =null; if
+	 * (obj.getId()==CompagnieAerienneVolPk this. class, obj.getId())!=null) {
+	 * DaoCompagnieAerienneVol DaoCompagnieAerienneVol =
+	 * DaoCompagnieAerienneVolFactory.getInstance(); Set<CompagnieAerienneVol> toto
+	 * = (Set<CompagnieAerienneVol>) em.find(CompagnieAerienneVol.class,
+	 * obj.getId()); for (CompagnieAerienneVol c : toto) {
+	 * DaoCompagnieAerienneVol.delete(c); } }
+	 */
 
 	@Override
 	public void deleteByKey(Long key) {
@@ -112,21 +135,19 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 		}
 		em.close();
 	}
-	
-	public List<CompagnieAerienne> findCompagnieAerienneVolByKeyWithCompagnie(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
-		Query query=em.createQuery("select distinct c from CompagnieAerienne c left join fetch c.compagniesAerienneVol where c.id=:key");
-		query.setParameter("key", key);
-		List<CompagnieAerienne> c=null;
 
-		c=query.getResultList();
-		
+	public List<CompagnieAerienne> findCompagnieAerienneVolByKeyWithCompagnie(Long key) {
+		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
+		Query query = em.createQuery(
+				"select distinct c from CompagnieAerienne c left join fetch c.compagniesAerienneVol where c.id=:key");
+		query.setParameter("key", key);
+		List<CompagnieAerienne> c = null;
+
+		c = query.getResultList();
+
 		em.close();
 		return c;
-		
-	}
 
-	
-	
+	}
 
 }

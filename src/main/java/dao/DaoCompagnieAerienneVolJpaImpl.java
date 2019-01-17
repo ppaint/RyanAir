@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import formationJpa.model.Ordinateur;
 import model.CompagnieAerienneVol;
 import model.CompagnieAerienneVolPk;
 import util.Context;
@@ -93,6 +94,7 @@ public class DaoCompagnieAerienneVolJpaImpl implements DaoCompagnieAerienneVol {
 		}
 		em.close();
 	}
+
 
 	@Override
 	public void deleteByKey(CompagnieAerienneVolPk key) {
