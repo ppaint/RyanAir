@@ -1,36 +1,26 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.DaoAeroport;
-import dao.DaoClient;
 import dao.DaoCompagnieAerienne;
 import dao.DaoEscale;
-import dao.DaoLogin;
-import dao.DaoPassager;
-import dao.DaoReservation;
 import dao.DaoVille;
-import dao.DaoVol;
-import model.Aeroport;
-import model.Vol;
+import model.Escale;
 
+class TestEscale {
 
-
-
-class TestAeroport {
-	
 	private static ClassPathXmlApplicationContext ctx = null;
 
-	private DaoAeroport daoAeroport=null;
-	private DaoCompagnieAerienne daoCompagnieAerienne=null;
-	private DaoVille daoVille=null;
 	private DaoEscale daoEscale=null;
 	
 	@BeforeClass//une instruction ne s'effectue qu'une seule fois avant le 1er test-> remplace le constructeur
@@ -46,32 +36,32 @@ class TestAeroport {
 	
 	@Before//s'effectue avant chaque test
 	public void initDao() {
-		daoAeroport = ctx.getBean(DaoAeroport.class);
+		daoEscale = ctx.getBean(DaoEscale.class);
 	}
 	
 	
 	@org.junit.Test
-	public List<Aeroport> FindAll(Aeroport a){
+	public List<Escale> FindAll(Escale v){
 		fail("fail");
 		return null;
 	}
 	@org.junit.Test
-	public Aeroport findAeroport(Integer key) {
+	public Escale findEscale(Integer key) {
 		fail("fail");
 		return null;
 	}
 	@org.junit.Test
-	public void insert (Aeroport v) {
+	public void insert (Escale v) {
 		fail("fail");
 
 	}
 	@org.junit.Test
-	public Aeroport update(Aeroport a){
+	public Escale update(Escale v){
 		fail("fail");
 		return null;
 	}
 	@org.junit.Test
-	public void delete(Aeroport a){
+	public void delete(Escale v){
 		fail("fail");
 	}
 	@org.junit.Test
@@ -79,17 +69,5 @@ class TestAeroport {
 		fail("fail");
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 
 }

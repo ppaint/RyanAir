@@ -2,36 +2,22 @@ package test;
 
 import static org.junit.Assert.*;
 
+
 import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import dao.DaoAeroport;
-import dao.DaoClient;
-import dao.DaoCompagnieAerienne;
-import dao.DaoEscale;
-import dao.DaoLogin;
-import dao.DaoPassager;
-import dao.DaoReservation;
 import dao.DaoVille;
-import dao.DaoVol;
-import model.Aeroport;
-import model.Vol;
+import model.Ville;
 
 
-
-
-class TestAeroport {
-	
+class TestVille {
 	private static ClassPathXmlApplicationContext ctx = null;
-
-	private DaoAeroport daoAeroport=null;
-	private DaoCompagnieAerienne daoCompagnieAerienne=null;
+;
 	private DaoVille daoVille=null;
-	private DaoEscale daoEscale=null;
+
 	
 	@BeforeClass//une instruction ne s'effectue qu'une seule fois avant le 1er test-> remplace le constructeur
 	public static void initClassPathXmlApplicationContext() {
@@ -46,49 +32,37 @@ class TestAeroport {
 	
 	@Before//s'effectue avant chaque test
 	public void initDao() {
-		daoAeroport = ctx.getBean(DaoAeroport.class);
+		daoVille = ctx.getBean(DaoVille.class);
 	}
 	
 	
 	@org.junit.Test
-	public List<Aeroport> FindAll(Aeroport a){
-		fail("fail");
-		return null;
+	public void FindAll(){
+//		Ville ville = new Ville();
+//		assertNotNull(object);
 	}
 	@org.junit.Test
-	public Aeroport findAeroport(Integer key) {
-		fail("fail");
-		return null;
-	}
-	@org.junit.Test
-	public void insert (Aeroport v) {
-		fail("fail");
-
-	}
-	@org.junit.Test
-	public Aeroport update(Aeroport a){
-		fail("fail");
-		return null;
-	}
-	@org.junit.Test
-	public void delete(Aeroport a){
+	public void findVille() {
 		fail("fail");
 	}
 	@org.junit.Test
-	public void deleteByKey(Integer key){
+	public void insert () {
+		Ville ville = new Ville();
+		daoVille.insert(ville);
+		assertNotNull(ville.getId());
+	}
+	@org.junit.Test
+	public void update(){
 		fail("fail");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@org.junit.Test
+	public void delete(){
+		fail("fail");
+	}
+	@org.junit.Test
+	public void deleteByKey(){
+		fail("fail");
+	}
 	
 
 

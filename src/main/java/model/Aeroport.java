@@ -13,6 +13,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name="aeroport")
 @SequenceGenerator(name="seqAeroport",sequenceName="seq_aeroport",allocationSize=1,initialValue=1)
@@ -23,11 +27,13 @@ public class Aeroport {
 		private Long id;
 		@Column(name="nom")
 		private String nom;
+		@Autowired
 		@OneToMany(mappedBy = "arrivee")
 		private List<Vol> volsArrivee;
+		@Autowired
 		@OneToMany(mappedBy = "depart")
 		private List<Vol> volsDepart;
-		
+		@Autowired
 		@ManyToMany(mappedBy="aeroports")
 		private List<Ville> villes;
 		@Version

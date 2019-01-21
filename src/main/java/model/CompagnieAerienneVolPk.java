@@ -6,12 +6,16 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Embeddable
 
 public class CompagnieAerienneVolPk implements Serializable {
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name = "compagnie_aerienne_id")
 	private CompagnieAerienne compagnieAerienne;
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name = "vol_id")
 	private Vol vol;

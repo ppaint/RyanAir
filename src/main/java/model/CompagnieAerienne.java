@@ -12,6 +12,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "compagnie_aerienne")
 @SequenceGenerator(name = "seqCompagnieAerienne", sequenceName = "seq_compagnie_aerienne", allocationSize = 1, initialValue = 100)
@@ -24,6 +28,7 @@ public class CompagnieAerienne {
 	private Long id;
 	@Column(name = "nom_compagnie_aerienne", length = 150)
 	private String nom;
+	@Autowired
 	@OneToMany(mappedBy = "key.compagnieAerienne")
 	private List<CompagnieAerienneVol> compagniesAerienneVol;
 	@Version

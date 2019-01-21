@@ -18,6 +18,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name="ville")
 @SequenceGenerator (name="seqVille", sequenceName="seq_ville", allocationSize=1,initialValue=1)
@@ -27,6 +31,7 @@ public class Ville {
 	private Long id;
 	@Column(name="nom")
 	private String nom;
+	@Autowired
 	@ManyToMany
 	@JoinTable(name="villeaeroport", joinColumns=@JoinColumn(name="ville_id"), inverseJoinColumns=@JoinColumn(name="aeroport_id"))
 	private Set<Aeroport> aeroports= new HashSet<>();

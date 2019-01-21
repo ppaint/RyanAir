@@ -1,37 +1,28 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.DaoAeroport;
-import dao.DaoClient;
 import dao.DaoCompagnieAerienne;
 import dao.DaoEscale;
-import dao.DaoLogin;
-import dao.DaoPassager;
-import dao.DaoReservation;
 import dao.DaoVille;
-import dao.DaoVol;
-import model.Aeroport;
-import model.Vol;
+import model.CompagnieAerienne;
 
+class TestCompagnieAerienne {
 
-
-
-class TestAeroport {
-	
 	private static ClassPathXmlApplicationContext ctx = null;
 
-	private DaoAeroport daoAeroport=null;
 	private DaoCompagnieAerienne daoCompagnieAerienne=null;
-	private DaoVille daoVille=null;
-	private DaoEscale daoEscale=null;
+
 	
 	@BeforeClass//une instruction ne s'effectue qu'une seule fois avant le 1er test-> remplace le constructeur
 	public static void initClassPathXmlApplicationContext() {
@@ -46,50 +37,36 @@ class TestAeroport {
 	
 	@Before//s'effectue avant chaque test
 	public void initDao() {
-		daoAeroport = ctx.getBean(DaoAeroport.class);
+		daoCompagnieAerienne = ctx.getBean(DaoCompagnieAerienne.class);
 	}
 	
 	
 	@org.junit.Test
-	public List<Aeroport> FindAll(Aeroport a){
+	public List<CompagnieAerienne> FindAll(CompagnieAerienne v){
 		fail("fail");
 		return null;
 	}
 	@org.junit.Test
-	public Aeroport findAeroport(Integer key) {
+	public CompagnieAerienne findCompagnieAerienne(Integer key) {
 		fail("fail");
 		return null;
 	}
 	@org.junit.Test
-	public void insert (Aeroport v) {
+	public void insert (CompagnieAerienne v) {
 		fail("fail");
 
 	}
 	@org.junit.Test
-	public Aeroport update(Aeroport a){
+	public CompagnieAerienne update(CompagnieAerienne v){
 		fail("fail");
 		return null;
 	}
 	@org.junit.Test
-	public void delete(Aeroport a){
+	public void delete(CompagnieAerienne v){
 		fail("fail");
 	}
 	@org.junit.Test
 	public void deleteByKey(Integer key){
 		fail("fail");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 }

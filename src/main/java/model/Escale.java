@@ -10,10 +10,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name="escale")
 public class Escale {
-	
+	@Autowired
 	@EmbeddedId
 	private EscalePk key;
 	@Column(name="heure_depart")

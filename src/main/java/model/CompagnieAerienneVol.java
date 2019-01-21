@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+@Component
 @Entity
 @Table(name = "compagnie_aerienne_vol")
 public class CompagnieAerienneVol {
-
+	@Autowired
 	@EmbeddedId
 	private CompagnieAerienneVolPk key;
 	@Column(name = "numero")
