@@ -2,10 +2,10 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Version;
 
 @Embeddable
 public class Adresse {
+	@Column(name = "pays", length = 200)
 	private String pays;
 	@Column(name = "rue", length = 200)
 	private String rue;
