@@ -3,168 +3,81 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import model.ClientEI;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import model.Reservation;
 import model.Vol;
-import util.Context;
 
+@Repository
 public class DaoVolJpaImpl implements DaoVol{
+	
+	EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Vol> findAll() {
-		// TODO Auto-generated method stub
-		List<Vol> vols = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Vol v");
-		vols = query.getResultList();
-
-		return vols;
+		return em.createQuery("from Vol v").getResultList();
 	}
 
 	@Override
 	public Vol findByKey(Long key) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Vol v = null;
-		v = em.find(Vol.class, key);
-		em.close();
-		return v;
-
+		return em.find(Vol.class, key);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(Vol obj) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.persist(obj);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
+		em.persist(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Vol update(Vol obj) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		Vol vol=null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			vol=em.merge(obj);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
-		return vol;
+		return em.merge(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Vol obj) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.merge(obj));
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
+		em.remove(em.merge(obj));
 	}
 
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteByKey(Long key) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.find(Vol.class, key));
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
+		em.remove(em.find(Vol.class, key));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Vol> findEscaleByKeyWithVol(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
 		Query query=em.createQuery("select distinct v from Vol v left join fetch v.escales where v.id=:key");
 		query.setParameter("key", key);
-		List<Vol> v=null;
-
-		v=query.getResultList();
-		
-		em.close();
-		return v;
-		
+		return query.getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Vol> findCompagnieByKeyWithVol(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
 		Query query=em.createQuery("select distinct v from Vol v left join fetch v.compagniesAerienneVol where v.id=:key");
 		query.setParameter("key", key);
-		List<Vol> v=null;
-
-		v=query.getResultList();
-		
-		em.close();
-		return v;
-		
+		return query.getResultList();	
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Vol> findReservationByKeyWithVol(Long key) {
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
 		Query query=em.createQuery("select distinct v from Vol v left join fetch v.reservations where v.id=:key");
 		query.setParameter("key", key);
-		List<Vol> v=null;
-
-		v=query.getResultList();
-		
-		em.close();
-		return v;
-		
+		return query.getResultList();
 	}
-	
-	
-	
+		
 	public Reservation findClientEIByVol (Vol v) {
-		Reservation c = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Query query = em.createQuery("select r from Reservation r where r.id=?1");
 		query.setParameter(1, v.getId());
-		c = (Reservation) query.getSingleResult();
-		return c;
+		return (Reservation) query.getSingleResult();
 	}
 	
-	
-	
-
 }

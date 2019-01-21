@@ -3,106 +3,51 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.Ville;
-import util.Context;
 
+@Repository
 class DaoVilleJpaImpl implements DaoVille{
+	
+	EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Ville> findAll() {
-		List<Ville> villes = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Aeroport a");
-		villes = query.getResultList();
-		em.close();
-		return villes;
+		return em.createQuery("from Aeroport a").getResultList();
 	}
 	
 
 	@Override
 	public Ville findByKey(Long key) {
-		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		Ville p =null;
-		p=em.find(Ville.class, key);
-		em.close();
-		return p;
+		return em.find(Ville.class, key);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(Ville obj) {
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.persist(obj);;
-			tx.commit();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
-		em.close();	
-		
+		em.persist(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Ville update(Ville obj) {
-		Ville ville = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			ville = em.merge(obj);;
-			tx.commit();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
-		em.close();		
-	return ville;
+		return em.merge(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Ville obj) {
-		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx=null;
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.remove(em.merge(obj));
-			tx.commit();
-		}catch (Exception e ) {
-			e.printStackTrace();
-			if (tx!=null && tx.isActive()) {
-				tx.rollback();
-			}
-		}em.close();
+		em.remove(em.merge(obj));
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteByKey(Long key) {
-		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx=null;
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.remove(em.find(Ville.class, key));
-			tx.commit();
-		}catch (Exception e ) {
-			e.printStackTrace();
-			if (tx!=null && tx.isActive()) {
-				tx.rollback();
-			}
-		}em.close();
+		em.remove(em.find(Ville.class, key));
 		
 	}
 

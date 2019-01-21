@@ -3,106 +3,47 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import model.Aeroport;
 import model.Escale;
-import util.Context;
 
+@Repository
 public class DaoEscaleJpaImpl implements DaoEscale {
+	
+	EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Escale> findAll() {
-		List<Escale> escales = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Aeroport a");
-		escales = query.getResultList();
-		em.close();
-		return escales;
+		return em.createQuery("from Aeroport a").getResultList();
 	}
 
 	@Override
 	public Escale findByKey(Integer key) {
-		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		Escale p =null;
-		p=em.find(Escale.class, key);
-		em.close();
-		return p;
+		return em.find(Escale.class, key);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(Escale obj) {
-		Escale escale = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.persist(obj);;
-			tx.commit();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
-		em.close();
+		em.persist(obj);
 	}
 
 	@Override
 	public Escale update(Escale obj) {
-		Escale escale = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.merge(obj);;
-			tx.commit();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
-		em.close();		
-	return escale;
+		return em.merge(obj);
 	}
 
 	@Override
 	public void delete(Escale obj) {
-		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx=null;
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.remove(em.merge(obj));
-			tx.commit();
-		}catch (Exception e ) {
-			e.printStackTrace();
-			if (tx!=null && tx.isActive()) {
-				tx.rollback();
-			}
-		}em.close();
+		em.remove(em.merge(obj));
 	}
 
 	@Override
 	public void deleteByKey(Integer key) {
-		EntityManager em =Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx=null;
-		try {
-			tx=em.getTransaction();
-			tx.begin();
-			em.remove(em.find(Escale.class, key));
-			tx.commit();
-		}catch (Exception e ) {
-			e.printStackTrace();
-			if (tx!=null && tx.isActive()) {
-				tx.rollback();
-			}
-		}em.close();
-		
+		em.remove(em.find(Escale.class, key));		
 	}
 
 }

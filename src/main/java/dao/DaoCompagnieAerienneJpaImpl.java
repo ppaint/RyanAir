@@ -1,108 +1,51 @@
 package dao;
 
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import model.CompagnieAerienne;
-import model.CompagnieAerienneVol;
-import model.CompagnieAerienneVolPk;
-import model.Vol;
-import util.Context;
 
+@Repository
 public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
+	
+	EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CompagnieAerienne> findAll() {
-		// TODO Auto-generated method stub
-		List<CompagnieAerienne> adherents = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from CompagnieAerienne c");
-		adherents = query.getResultList();
-
-		return adherents;
+		return em.createQuery("from CompagnieAerienne c").getResultList();
 	}
 
 	@Override
 	public CompagnieAerienne findByKey(Long key) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		CompagnieAerienne a = null;
-		a = em.find(CompagnieAerienne.class, key);
-		em.close();
-		return a;
+		return em.find(CompagnieAerienne.class, key);
 
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(CompagnieAerienne obj) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.persist(obj);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
+		em.persist(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public CompagnieAerienne update(CompagnieAerienne obj) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		CompagnieAerienne compagnieAerienne = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			compagnieAerienne = em.merge(obj);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
-		return compagnieAerienne;
+		return em.merge(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(CompagnieAerienne obj) {
-		// TODO Auto-generated method stub
-
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		em.getTransaction().begin();
 		Query query = em.createQuery("delete from CompagnieAerienneVol c where c.key.compagnieAerienne=:key");
 		query.setParameter("key", obj);
 		query.executeUpdate();
-		em.getTransaction().commit();
-		em.close();
-		
-		EntityManager em2 = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em2.getTransaction();
-			tx.begin();
-			em2.remove(em2.merge(obj));
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em2.close();
+		em.remove(em.merge(obj));
 	}
 
 	/*
@@ -119,34 +62,18 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 
 	@Override
 	public void deleteByKey(Long key) {
-		// TODO Auto-generated method stub
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.find(CompagnieAerienne.class, key));
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		em.close();
+		Query query = em.createQuery("delete from CompagnieAerienneVol c left join fetch c.CompagnieAerienneVolPK cp left join fetch cp.CompagnieAerienne cpa where cpa.id=:key");
+		query.setParameter("key", key);
+		query.executeUpdate();
+		em.remove(em.find(CompagnieAerienne.class, key));
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<CompagnieAerienne> findCompagnieAerienneVolByKeyWithCompagnie(Long key) {
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Query query = em.createQuery(
 				"select distinct c from CompagnieAerienne c left join fetch c.compagniesAerienneVol where c.id=:key");
 		query.setParameter("key", key);
-		List<CompagnieAerienne> c = null;
-
-		c = query.getResultList();
-
-		em.close();
-		return c;
+		return query.getResultList();
 
 	}
 

@@ -2,110 +2,50 @@ package dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import model.Reservation;
-import util.Context;
 
+@Repository
 class DaoReservationJPA implements DaoReservation {
+	
+	EntityManager em;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> findAll() {
-		List<Reservation> Reservations = null;
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("select a from Reservation a");
-		Reservations = query.getResultList();
-		
-		return Reservations;
+		return em.createQuery("select a from Reservation a").getResultList();
 	}
 
 	@Override
 	public Reservation findByKey(Integer key) {
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Reservation f = null;
-		EntityTransaction tx = null;
-		tx = em.getTransaction();
-		tx.begin();
-		em.find(Reservation.class, key);
-		tx.commit();
-		em.close();
-		return f;	}
+		return em.find(Reservation.class, key);
+		}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(Reservation obj) {
-			EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-			EntityTransaction tx = null ;
-			try {
-				tx = em.getTransaction();
-				tx.begin();
-				em.persist(obj);
-				tx.commit();
-			} catch(Exception e) {
-				if (tx != null && tx.isActive()) {
-					e.printStackTrace();
-					tx.rollback();
-				}
-			}
-			em.close();
-		}
+		em.persist(obj);
+	}
 
 	@Override
 	public Reservation update(Reservation obj) {
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		Reservation Reservation = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			Reservation = em.merge(obj);
-			tx.commit();
-		} catch(Exception e) {
-			if (tx != null && tx.isActive()) {
-				e.printStackTrace();
-				tx.rollback();
-			}
-		}
-		em.close();
-		return Reservation;
+		return em.merge(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Reservation obj) {
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
 			em.remove(em.merge(obj));
-			tx.commit();
-		} catch(Exception e) {
-			if (tx != null && tx.isActive()) {
-				e.printStackTrace();
-				tx.rollback();
-			}
-		}
-		em.close();
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteByKey(Integer key) {
-		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
 			em.remove(em.find(Reservation.class, key));
-			tx.commit();
-		} catch(Exception e) {
-			if (tx != null && tx.isActive()) {
-				e.printStackTrace();
-				tx.rollback();
-			}
-		}
-		em.close();
 	}
 
 }
