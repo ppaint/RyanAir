@@ -34,18 +34,31 @@ public class ApptestTiphaine {
 		
 		DaoCompagnieAerienne daocomp = DaoCompagnieAerienneFactory.getInstance();
 		CompagnieAerienne comp1 = new CompagnieAerienne();
-		daocomp.insert(comp1);
 		
+		
+	
+		daocomp.insert(comp1);
 		comp1.setNom("Air France");
 		daocomp.update(comp1);
 		
+		
+		
+		
+		
 		CompagnieAerienneVolPk pk1=new CompagnieAerienneVolPk(comp1, vol1);
+	
 		
 		DaoCompagnieAerienneVol daocompvol = DaoCompagnieAerienneVolFactory.getInstance();
-		CompagnieAerienneVol comp2 = new CompagnieAerienneVol(pk1, "30");
-		daocompvol.insert(comp2);
-		comp2.setNumero("44");
-		daocompvol.update(comp2);
+		CompagnieAerienneVol compvol2 = new CompagnieAerienneVol(pk1, "30");
+	
+		daocompvol.insert(compvol2);
+		daocompvol.update(compvol2);
+		
+		
+		
+		
+		
+		
 		
 		//daovol.delete(vol1);
 		
