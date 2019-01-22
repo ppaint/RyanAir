@@ -17,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Table(name = "vol")
 @SequenceGenerator(name = "seqVol", sequenceName = "seq_vol", allocationSize = 1, initialValue = 100)
@@ -45,10 +47,13 @@ public class Vol {
 	@JoinColumn(name="aeroport_depart")
 	private Aeroport depart;
 	
+	@Autowired
 	@OneToMany(mappedBy = "key.vol")
 	private List<Escale> escales;
+	@Autowired
 	@OneToMany(mappedBy = "key.vol")
 	private List<CompagnieAerienneVol> compagniesAerienneVol;
+	@Autowired
 	@OneToMany(mappedBy = "vol")
 	private List<Reservation> reservations;
 	@Version
