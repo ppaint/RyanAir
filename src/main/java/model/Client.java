@@ -19,6 +19,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", allocationSize = 1, initialValue = 100)
@@ -50,6 +54,7 @@ public abstract class Client {
 	private String email;
 	
 	
+	@Autowired
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "pays", column = @Column(name = "country")),
 			@AttributeOverride(name = "rue", column = @Column(name = "street", length = 150)),
@@ -57,9 +62,12 @@ public abstract class Client {
 			@AttributeOverride(name = "ville", column = @Column(name = "city", length = 150)) })
 	private Adresse adresse;
 	
+	
+	@Autowired
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations = new ArrayList<>();
 	
+	@Autowired
 	@OneToOne
 	private Login login;
 	

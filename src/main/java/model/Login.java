@@ -10,6 +10,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "login")
 @SequenceGenerator(name = "seqLogin", sequenceName = "seq_login", allocationSize = 1, initialValue = 100)
@@ -34,6 +38,7 @@ public class Login {
 	@Version
 	private int version;
 	
+	@Autowired
 	@OneToOne(mappedBy = "login")
 	private Client client;
 	

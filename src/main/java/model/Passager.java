@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -8,9 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "passenger")
 @SequenceGenerator(name = "seqPassager", sequenceName = "seq_passenger", allocationSize = 1, initialValue = 100)
@@ -32,6 +39,7 @@ public class Passager {
 	private String nom;
 	
 	
+	@Autowired
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "pays", column = @Column(name = "country")),
 			@AttributeOverride(name = "rue", column = @Column(name = "street", length = 150)),
@@ -39,7 +47,9 @@ public class Passager {
 			@AttributeOverride(name = "ville", column = @Column(name = "city", length = 150)) })
 	private Adresse adresse;
 	
-	
+	@Autowired
+	@OneToMany(mappedBy = "passager")
+	private List<Reservation> reservations;
 	
 	// ------------------ Constructeurs --------------------------- //
 
