@@ -19,12 +19,13 @@ import dao.DaoReservation;
 import dao.DaoVille;
 import dao.DaoVol;
 import model.Aeroport;
+import model.Ville;
 import model.Vol;
 
 
 
 
-class TestAeroport {
+public class TestAeroport {
 	
 	private static ClassPathXmlApplicationContext ctx = null;
 
@@ -51,32 +52,46 @@ class TestAeroport {
 	
 	
 	@org.junit.Test
-	public List<Aeroport> FindAll(Aeroport a){
-		fail("fail");
-		return null;
+	public void FindAll(){
+		List<Aeroport> Aeroport=null;
+		Aeroport a = new Aeroport("oo");
+		Aeroport b = new Aeroport("tt");
+		Aeroport.add(a);
+		Aeroport.add(b);
+		assertNotNull(Aeroport);
 	}
 	@org.junit.Test
-	public Aeroport findAeroport(Integer key) {
-		fail("fail");
-		return null;
+	public void findVille() {
+		Aeroport a = new Aeroport("oo");
+		daoAeroport.insert(a);
+		assertNotNull(a.getId());
 	}
 	@org.junit.Test
-	public void insert (Aeroport v) {
-		fail("fail");
-
+	public void insert () {
+		Aeroport a = new Aeroport("oo");
+		daoAeroport.insert(a);
+		assertNotNull(a.getId());
 	}
 	@org.junit.Test
-	public Aeroport update(Aeroport a){
-		fail("fail");
-		return null;
+	public void update(){
+		Aeroport a = new Aeroport("oo");
+		daoAeroport.insert(a);
+		a.setNom("pp");
+		assertEquals("pp", a.getNom());
 	}
 	@org.junit.Test
-	public void delete(Aeroport a){
-		fail("fail");
+	public void delete(){
+		Aeroport a = new Aeroport("oo");
+		daoAeroport.insert(a);
+		daoAeroport.delete(a);
+		assertNull(daoAeroport.findByKey(a.getId()));
 	}
 	@org.junit.Test
-	public void deleteByKey(Integer key){
-		fail("fail");
+	public void deleteByKey(){
+		Aeroport a = new Aeroport("oo");
+		daoAeroport.insert(a);
+		daoAeroport.delete(a);
+		assertNull(daoAeroport.findByKey(a.getId()));
 	}
 	
 	

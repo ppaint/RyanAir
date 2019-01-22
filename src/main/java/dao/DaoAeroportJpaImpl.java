@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -14,8 +15,10 @@ import model.Ville;
 import model.Vol;
 
 @Repository
+@Transactional
 class DaoAeroportJpaImpl implements  DaoAeroport{
 	
+	@PersistenceContext
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")

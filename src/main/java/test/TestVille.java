@@ -13,7 +13,8 @@ import dao.DaoVille;
 import model.Ville;
 
 
-class TestVille {
+
+public class TestVille {
 	private static ClassPathXmlApplicationContext ctx = null;
 ;
 	private DaoVille daoVille=null;
@@ -38,30 +39,45 @@ class TestVille {
 	
 	@org.junit.Test
 	public void FindAll(){
-//		Ville ville = new Ville();
-//		assertNotNull(object);
+		List<Ville> villes=null;
+		Ville a = new Ville("oo");
+		Ville b = new Ville("tt");
+		villes.add(a);
+		villes.add(b);
+		assertNotNull(villes);
 	}
 	@org.junit.Test
 	public void findVille() {
-		fail("fail");
+		Ville a = new Ville("oo");
+		daoVille.insert(a);
+		assertNotNull(a.getId());
 	}
 	@org.junit.Test
 	public void insert () {
-		Ville ville = new Ville();
-		daoVille.insert(ville);
-		assertNotNull(ville.getId());
+		Ville a = new Ville("oo");
+		daoVille.insert(a);
+		assertNotNull(a.getId());
 	}
 	@org.junit.Test
 	public void update(){
-		fail("fail");
+		Ville a = new Ville("oo");
+		daoVille.insert(a);
+		a.setNom("pp");
+		assertEquals("pp", a.getNom());
 	}
 	@org.junit.Test
 	public void delete(){
-		fail("fail");
+		Ville a = new Ville("oo");
+		daoVille.insert(a);
+		daoVille.delete(a);
+		assertNull(daoVille.findByKey(a.getId()));
 	}
 	@org.junit.Test
 	public void deleteByKey(){
-		fail("fail");
+		Ville a = new Ville("oo");
+		daoVille.insert(a);
+		daoVille.deleteByKey(a.getId());
+		assertNull(daoVille.findByKey(a.getId()));
 	}
 	
 

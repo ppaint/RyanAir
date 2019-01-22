@@ -11,8 +11,39 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 <context:annotation-config></context:annotation-config>
-<context:component-scan base-package="util dao, model, test"></context:component-scan>
+<context:component-scan base-package="util, dao, model, test, repository"></context:component-scan>
  <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+<!--On configure des ?pools? de connexion à la BDD  -->
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<property name="driverClassName" 
+	value="org.postgresql.Driver"></property>
+	<property name="url" 
+	value="jdbc:postgresql://localhost:5432/RyanAir"></property>
+	<property name="username" value="postgres"></property>
+	<property name="password" value="root"></property>
+	<property name="initialSize" value="5"></property><!--nbe de connexions de base -->
+	<property name="maxTotal" value="10"></property><!--nbe de connexions max-->
+</bean>
+
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="packagesToScan" value ="dao, model, repository, test"></property>
+	<property name="jpaVendorAdapter"> <!--implémentation de jpa à utiliser -->
+		<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			<property name="databasePlatform" value ="org.hibernate.dialect.PostgreSQL95Dialect"></property><!--dialecte hibernate -->
+			<property name="showSql" value="true"></property>
+		</bean>
+		</property>
+			<property name="jpaProperties"><!--Positionne une map avec toutes les autres propriétés que l'on voudrait positionner, celles où il manque un setter -->
+			<props>
+				<prop key="hibernate.hbm2ddl.auto" >update</prop>
+				<prop key="hibernate.format.sql" >true</prop>
+			</props>
+	
+	</property>
+</bean>
 
 <bean id ="" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"><!--Message d'erreurs plus détaillés -->
 </bean>
@@ -24,7 +55,7 @@
 <tx:annotation-driven transaction-manager="transactionManager"/>
 
 <!--on définit les packages qui définissent les repositories-->
-<jpa:repositories base-package="formationJpaSpring.repository"></jpa:repositories>
+<jpa:repositories base-package="repository, dao"></jpa:repositories>
 
 	
 </beans>
