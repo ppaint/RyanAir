@@ -10,15 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import model.Ville;
 
-@Repository
-public interface VilleRepository extends JpaRepository<Ville, Integer>{
+//@Repository
+//public interface VilleRepository extends JpaRepository<Ville, Integer>{
 
 	
-//	@PersistenceContext
+	//@PersistenceContext
 //	EntityManager em;
-//	
-//	@Transactional(propagation = Propagation.REQUIRED)
-//	public void insert(Ville obj) {
-//		em.persist(obj);
-//	}
-}
+	
+	//@Transactional(propagation = Propagation.REQUIRED)
+	//public void insert (Ville obj) {
+	//	em.persist(obj);
+	//}
+//}

@@ -11,14 +11,14 @@ import org.junit.BeforeClass;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import dao.DaoVille;
 import model.Ville;
-import repository.VilleRepository;;
+
 
 
 public class TestVille {
 	private static ClassPathXmlApplicationContext ctx = null;
 
 	private DaoVille daoVille=null;
-	private VilleRepository villeRepository =null;
+	//private VilleRepository villeRepository =null;
 	
 	@BeforeClass//une instruction ne s'effectue qu'une seule fois avant le 1er test-> remplace le constructeur
 	public static void initClassPathXmlApplicationContext() {
@@ -50,7 +50,7 @@ public class TestVille {
 	public void findVille() {
 		Ville a = new Ville("oo");
 		daoVille.insert(a);
-		assertNotNull(a.getId());
+		assertNotNull(daoVille.findByKey(a.getId()));
 	}
 	@org.junit.Test
 	public void insert () {
@@ -58,11 +58,13 @@ public class TestVille {
 		daoVille.insert(a);
 		assertNotNull(a.getId());
 	}
+	
 	@org.junit.Test
 	public void update(){
 		Ville a = new Ville("oo");
 		daoVille.insert(a);
 		a.setNom("pp");
+		a = daoVille.update(a);
 		assertEquals("pp", a.getNom());
 	}
 	@org.junit.Test
