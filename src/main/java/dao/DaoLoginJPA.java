@@ -24,7 +24,7 @@ class DaoLoginJPA implements DaoLogin {
 	}
 
 	@Override
-	public Login findByKey(Integer key) {
+	public Login findByKey(Long key) {
 		return em.find(Login.class, key);
 	}
 
@@ -48,7 +48,7 @@ class DaoLoginJPA implements DaoLogin {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		em.remove(em.find(Login.class, key));
 	}
 

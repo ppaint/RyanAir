@@ -112,7 +112,7 @@ public class TestClient {
 		daoClient.deleteByKey(c.getId());
 		assertNull(daoClient.findByKey(a.getId()));
 		assertNull(daoClient.findByKey(b.getId()));
-		assertNull(daoClient.findByKey(c.getId()));
+		assertNull(daoClient.findByKey(c.getId()  ));
 	}
 	
 

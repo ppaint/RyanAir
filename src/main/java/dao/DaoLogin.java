@@ -1,6 +1,6 @@
 package dao;
 
 import model.Login;
-public interface DaoLogin extends DaoGeneric<Login, Integer> {
+public interface DaoLogin extends DaoGeneric<Login, Long> {
 
 }
