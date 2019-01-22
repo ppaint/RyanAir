@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+@Entity
 @Component
 @DiscriminatorValue("CM")
 public class ClientMoral extends Client {
