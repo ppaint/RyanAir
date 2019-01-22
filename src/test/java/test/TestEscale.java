@@ -1,7 +1,11 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -11,6 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.DaoEscale;
 import model.Escale;
+import model.Ville;
 
 class TestEscale {
 
@@ -36,33 +41,24 @@ class TestEscale {
 	
 	
 	@org.junit.Test
-	public List<Escale> FindAll(Escale v){
-		fail("fail");
-		return null;
+	public void FindAll(){
+		Escale a = new Escale();
+		Escale b = new Escale();
+		daoEscale.insert(a);
+		daoEscale.insert(b);
+		assertNotNull(daoEscale.findAll());
+	
 	}
-	@org.junit.Test
-	public Escale findEscale(Integer key) {
-		fail("fail");
-		return null;
-	}
-	@org.junit.Test
-	public void insert (Escale v) {
-		fail("fail");
+	
 
-	}
 	@org.junit.Test
-	public Escale update(Escale v){
-		fail("fail");
-		return null;
+	public void delete(){
+		Escale a = new Escale();
+		daoEscale.insert(a);
+		daoEscale.delete(a);
+		assertNull(daoEscale.findAll());
 	}
-	@org.junit.Test
-	public void delete(Escale v){
-		fail("fail");
-	}
-	@org.junit.Test
-	public void deleteByKey(Integer key){
-		fail("fail");
-	}
+
 	
 
 }
