@@ -1,5 +1,8 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -11,8 +14,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.DaoCompagnieAerienne;
 import model.CompagnieAerienne;
+import model.Ville;
 
-class TestCompagnieAerienne {
+public class TestCompagnieAerienne {
 
 	private static ClassPathXmlApplicationContext ctx = null;
 
@@ -37,31 +41,40 @@ class TestCompagnieAerienne {
 	
 	
 	@org.junit.Test
-	public List<CompagnieAerienne> FindAll(CompagnieAerienne v){
-		fail("fail");
-		return null;
+	public void FindAll(){
+		CompagnieAerienne a = new CompagnieAerienne("oo");
+		CompagnieAerienne b = new CompagnieAerienne("tt");
+		daoCompagnieAerienne.insert(a);
+		daoCompagnieAerienne.insert(b);
+		assertEquals(2, daoCompagnieAerienne.findAll().size());	
 	}
 	@org.junit.Test
-	public CompagnieAerienne findCompagnieAerienne(Integer key) {
-		fail("fail");
-		return null;
+	public void findCompagnieAerienne() {
+		CompagnieAerienne a = new CompagnieAerienne("oo");
+		daoCompagnieAerienne.insert(a);
+		assertNotNull(daoCompagnieAerienne.findByKey(a.getId()));
 	}
-	@org.junit.Test
-	public void insert (CompagnieAerienne v) {
-		fail("fail");
 
+	@org.junit.Test
+	public void update(){
+		CompagnieAerienne a = new CompagnieAerienne("oo");
+		daoCompagnieAerienne.insert(a);
+		a.setNom("pp");
+		a = daoCompagnieAerienne.update(a);
+		assertEquals("pp", a.getNom());
 	}
 	@org.junit.Test
-	public CompagnieAerienne update(CompagnieAerienne v){
-		fail("fail");
-		return null;
+	public void delete(){
+		CompagnieAerienne a = new CompagnieAerienne("oo");
+		daoCompagnieAerienne.insert(a);
+		daoCompagnieAerienne.delete(a);
+		assertNull(daoCompagnieAerienne.findByKey(a.getId()));
 	}
 	@org.junit.Test
-	public void delete(CompagnieAerienne v){
-		fail("fail");
-	}
-	@org.junit.Test
-	public void deleteByKey(Integer key){
-		fail("fail");
+	public void deleteByKey(){
+		CompagnieAerienne a = new CompagnieAerienne("oo");
+		daoCompagnieAerienne.insert(a);
+		daoCompagnieAerienne.deleteByKey(a.getId());
+		assertNull(daoCompagnieAerienne.findByKey(a.getId()));
 	}
 }

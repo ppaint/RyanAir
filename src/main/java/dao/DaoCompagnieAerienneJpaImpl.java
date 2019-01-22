@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.Aeroport;
 import model.CompagnieAerienne;
 
 @Repository
+@Transactional
 public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 	
 	@PersistenceContext
@@ -44,9 +46,6 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(CompagnieAerienne obj) {
-		Query query = em.createQuery("delete from CompagnieAerienneVol c where c.key.compagnieAerienne=:key");
-		query.setParameter("key", obj);
-		query.executeUpdate();
 		em.remove(em.merge(obj));
 	}
 
@@ -64,9 +63,6 @@ public class DaoCompagnieAerienneJpaImpl implements DaoCompagnieAerienne {
 
 	@Override
 	public void deleteByKey(Long key) {
-		Query query = em.createQuery("delete from CompagnieAerienneVol c left join fetch c.CompagnieAerienneVolPK cp left join fetch cp.CompagnieAerienne cpa where cpa.id=:key");
-		query.setParameter("key", key);
-		query.executeUpdate();
 		em.remove(em.find(CompagnieAerienne.class, key));
 	}
 

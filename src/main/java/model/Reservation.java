@@ -67,6 +67,17 @@ public class Reservation {
 	}
 
 
+	public Reservation(Date date, Integer numero, Client client) {
+		super();
+		this.date = date;
+		this.numero = numero;
+		this.client=client;
+	}
+	public Reservation(Integer numero, Client client) {
+		super();
+		this.numero = numero;
+		this.client=client;
+	}
 	//--------- Methodes -----------------
 	
 	public Long getId() {

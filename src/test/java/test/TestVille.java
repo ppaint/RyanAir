@@ -44,19 +44,13 @@ public class TestVille {
 		Ville b = new Ville("tt");
 		daoVille.insert(a);
 		daoVille.insert(b);
-		assertNotNull(daoVille.findAll());
+		assertEquals(2, daoVille.findAll().size());	
 	}
 	@org.junit.Test
 	public void findVille() {
 		Ville a = new Ville("oo");
 		daoVille.insert(a);
 		assertNotNull(daoVille.findByKey(a.getId()));
-	}
-	@org.junit.Test
-	public void insert () {
-		Ville a = new Ville("oo");
-		daoVille.insert(a);
-		assertNotNull(a.getId());
 	}
 	
 	@org.junit.Test

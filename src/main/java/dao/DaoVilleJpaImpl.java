@@ -20,7 +20,7 @@ class DaoVilleJpaImpl implements DaoVille{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Ville> findAll() {
-		return em.createQuery("from Aeroport a").getResultList();
+		return em.createQuery("from Ville a").getResultList();
 	}
 	
 
