@@ -6,16 +6,21 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /*rajouter hascode dès que vol est créé*/
 
 
-
+@Component
 @Embeddable
 public class EscalePk implements Serializable{
-
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_id")
 	private Aeroport aeroport;
+	
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name="vol_id")
 	private Vol vol;

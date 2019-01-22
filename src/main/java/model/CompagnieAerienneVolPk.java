@@ -7,9 +7,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Embeddable
-
+@Component
 public class CompagnieAerienneVolPk implements Serializable {
 	@Autowired
 	@ManyToOne

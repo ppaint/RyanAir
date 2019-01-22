@@ -3,6 +3,8 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.springframework.stereotype.Component;
+@Component
 @Embeddable
 public class Adresse {
 	@Column(name = "pays", length = 200)
