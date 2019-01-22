@@ -7,11 +7,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import model.Passager;
 
 @Repository
 class DaoPassagerJPA implements DaoPassager {
 	
+	@PersistenceContext
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")

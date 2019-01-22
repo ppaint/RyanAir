@@ -16,7 +16,7 @@ import model.Ville;
 
 public class TestVille {
 	private static ClassPathXmlApplicationContext ctx = null;
-;
+
 	private DaoVille daoVille=null;
 
 	

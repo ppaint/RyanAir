@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import model.Client;
 import model.Login;
 import model.Reservation;
@@ -14,6 +16,7 @@ import model.Reservation;
 @Repository
 class DaoClientJPA implements DaoClient {
 
+	@PersistenceContext
 	EntityManager em = null;
 
 	@SuppressWarnings("unchecked")

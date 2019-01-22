@@ -7,11 +7,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import model.Login;
 
 @Repository
 class DaoLoginJPA implements DaoLogin {
 	
+	@PersistenceContext
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")

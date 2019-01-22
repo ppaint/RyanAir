@@ -7,11 +7,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import model.Reservation;
 
 @Repository
 class DaoReservationJPA implements DaoReservation {
 	
+	@PersistenceContext
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")

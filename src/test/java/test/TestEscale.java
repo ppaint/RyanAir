@@ -1,20 +1,15 @@
 package test;
 
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import dao.DaoAeroport;
-import dao.DaoCompagnieAerienne;
 import dao.DaoEscale;
-import dao.DaoVille;
 import model.Escale;
 
 class TestEscale {
