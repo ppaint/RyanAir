@@ -24,7 +24,7 @@ class DaoReservationJPA implements DaoReservation {
 	}
 
 	@Override
-	public Reservation findByKey(Integer key) {
+	public Reservation findByKey(Long key) {
 		return em.find(Reservation.class, key);
 		}
 
@@ -35,6 +35,7 @@ class DaoReservationJPA implements DaoReservation {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Reservation update(Reservation obj) {
 		return em.merge(obj);
 	}
@@ -47,7 +48,7 @@ class DaoReservationJPA implements DaoReservation {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 			em.remove(em.find(Reservation.class, key));
 	}
 
