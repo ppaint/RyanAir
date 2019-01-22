@@ -2,6 +2,9 @@ package model;
 
 import javax.persistence.DiscriminatorValue;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @DiscriminatorValue("CP")
 public class ClientPhysique extends Client {
 	

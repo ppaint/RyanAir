@@ -3,6 +3,9 @@ package model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @DiscriminatorValue("CM")
 public class ClientMoral extends Client {
