@@ -3,14 +3,14 @@ package model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 @Component
-@Entity
 @DiscriminatorValue("EI")
 public class ClientEI extends Client {
 	
 	private String prenom;
+	
 	private TitrePhysique titre;
 	
 	public ClientEI() {

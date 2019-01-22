@@ -22,7 +22,6 @@ import javax.persistence.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", allocationSize = 1, initialValue = 100)

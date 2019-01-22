@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 <context:annotation-config></context:annotation-config>
-<context:component-scan base-package="util, dao, model, test, repository"></context:component-scan>
+<context:component-scan base-package="dao, model, test, repository"></context:component-scan>
  <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 
@@ -55,7 +55,7 @@
 <tx:annotation-driven transaction-manager="transactionManager"/>
 
 <!--on définit les packages qui définissent les repositories-->
-<jpa:repositories base-package="repository, dao"></jpa:repositories>
+<jpa:repositories base-package="repository"></jpa:repositories>
 
 	
 </beans>

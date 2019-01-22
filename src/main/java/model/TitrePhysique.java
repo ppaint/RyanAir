@@ -1,5 +1,11 @@
 package model;
 
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+
+
 public enum TitrePhysique {
 	M("monsieur"), MME("madame"), MLLE("mademoiselle");
 	

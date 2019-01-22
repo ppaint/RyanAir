@@ -1,5 +1,11 @@
 package model;
 
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+
+
 public enum TitreMoral {
 	ETAT("etat"), CIE("societe"), ASS("association");
 	
