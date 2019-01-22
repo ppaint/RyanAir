@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Table(name = "reservation")
 @SequenceGenerator(name = "seqReservation", sequenceName = "seq_reservation", allocationSize = 1, initialValue = 100)
@@ -32,17 +34,17 @@ public class Reservation {
 	@Column(name = "number", length = 150, nullable = false)
 	private Integer numero;
 	
-	
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name = "passenger")
 	private Passager passager;
 	
-	
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name = "client")
 	private Client client;
 	
-	
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name = "fly")
 	private Vol vol;
