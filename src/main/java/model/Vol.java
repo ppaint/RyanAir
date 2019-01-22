@@ -18,7 +18,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
+@Component
 @Entity
 @Table(name = "vol")
 @SequenceGenerator(name = "seqVol", sequenceName = "seq_vol", allocationSize = 1, initialValue = 100)
@@ -40,9 +41,11 @@ public class Vol {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_arrivee")
 	private Date dateArrivee;
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_arrivee")
 	private Aeroport arrivee;
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_depart")
 	private Aeroport depart;
