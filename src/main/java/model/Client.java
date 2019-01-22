@@ -62,7 +62,7 @@ public abstract class Client {
 	private Adresse adresse;
 	
 	
-	@Autowired
+	//@Autowired
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations = new ArrayList<>();
 	

@@ -41,22 +41,22 @@ public class Vol {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_arrivee")
 	private Date dateArrivee;
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_arrivee")
 	private Aeroport arrivee;
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_depart")
 	private Aeroport depart;
 	
-	@Autowired
+	//@Autowired
 	@OneToMany(mappedBy = "key.vol")
 	private List<Escale> escales;
-	@Autowired
+	//@Autowired
 	@OneToMany(mappedBy = "key.vol")
 	private List<CompagnieAerienneVol> compagniesAerienneVol;
-	@Autowired
+	//@Autowired
 	@OneToMany(mappedBy = "vol")
 	private List<Reservation> reservations;
 	@Version

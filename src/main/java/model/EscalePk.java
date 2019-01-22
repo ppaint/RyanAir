@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Embeddable
 public class EscalePk implements Serializable{
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_id")
 	private Aeroport aeroport;
 	
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name="vol_id")
 	private Vol vol;

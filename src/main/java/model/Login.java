@@ -38,7 +38,7 @@ public class Login {
 	@Version
 	private int version;
 	
-	@Autowired
+	//@Autowired
 	@OneToOne(mappedBy = "login")
 	private Client client;
 	

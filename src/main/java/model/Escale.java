@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="escale")
 public class Escale {
-	@Autowired
+	//@Autowired
 	@EmbeddedId
 	private EscalePk key;
 	@Column(name="heure_depart")

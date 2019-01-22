@@ -31,7 +31,7 @@ public class Ville {
 	private Long id;
 	@Column(name="nom")
 	private String nom;
-	@Autowired
+	//@Autowired
 	@ManyToMany
 	@JoinTable(name="villeaeroport", joinColumns=@JoinColumn(name="ville_id"), inverseJoinColumns=@JoinColumn(name="aeroport_id"))
 	private Set<Aeroport> aeroports= new HashSet<>();

@@ -47,7 +47,7 @@ public class Passager {
 			@AttributeOverride(name = "ville", column = @Column(name = "city", length = 150)) })
 	private Adresse adresse;
 	
-	@Autowired
+	//@Autowired
 	@OneToMany(mappedBy = "passager")
 	private List<Reservation> reservations;
 	

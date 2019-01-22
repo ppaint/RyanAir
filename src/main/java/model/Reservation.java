@@ -37,18 +37,17 @@ public class Reservation {
 	@Column(name = "number", length = 150, nullable = false)
 	private Integer numero;
 	
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name = "passenger")
 	private Passager passager;
 	
-	@Autowired
-	@Qualifier("CM")
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name = "client")
 	private Client client;
 	
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name = "fly")
 	private Vol vol;

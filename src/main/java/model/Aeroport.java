@@ -27,13 +27,13 @@ public class Aeroport {
 		private Long id;
 		@Column(name="nom")
 		private String nom;
-		@Autowired
+		//@Autowired
 		@OneToMany(mappedBy = "arrivee")
 		private List<Vol> volsArrivee;
-		@Autowired
+		//@Autowired
 		@OneToMany(mappedBy = "depart")
 		private List<Vol> volsDepart;
-		@Autowired
+		//@Autowired
 		@ManyToMany(mappedBy="aeroports")
 		private List<Ville> villes;
 		@Version

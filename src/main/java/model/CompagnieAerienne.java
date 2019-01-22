@@ -28,7 +28,7 @@ public class CompagnieAerienne {
 	private Long id;
 	@Column(name = "nom_compagnie_aerienne", length = 150)
 	private String nom;
-	@Autowired
+	//@Autowired
 	@OneToMany(mappedBy = "key.compagnieAerienne")
 	private List<CompagnieAerienneVol> compagniesAerienneVol;
 	@Version

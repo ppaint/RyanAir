@@ -14,11 +14,11 @@ import model.Ville;
 public interface VilleRepository extends JpaRepository<Ville, Integer>{
 
 	
-	@PersistenceContext
-	EntityManager em;
-	
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void insert(Ville obj) {
-		em.persist(obj);
-	}
+//	@PersistenceContext
+//	EntityManager em;
+//	
+//	@Transactional(propagation = Propagation.REQUIRED)
+//	public void insert(Ville obj) {
+//		em.persist(obj);
+//	}
 }

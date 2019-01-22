@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 @Embeddable
 @Component
 public class CompagnieAerienneVolPk implements Serializable {
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name = "compagnie_aerienne_id")
 	private CompagnieAerienne compagnieAerienne;
-	@Autowired
+	//@Autowired
 	@ManyToOne
 	@JoinColumn(name = "vol_id")
 	private Vol vol;
