@@ -20,7 +20,7 @@
 	<property name="driverClassName" 
 	value="org.postgresql.Driver"></property>
 	<property name="url" 
-	value="jdbc:postgresql://localhost:5432/RyanAir"></property>
+	value="jdbc:postgresql://localhost:5432/ryanair"></property>
 	<property name="username" value="postgres"></property>
 	<property name="password" value="root"></property>
 	<property name="initialSize" value="5"></property><!--nbe de connexions de base -->
