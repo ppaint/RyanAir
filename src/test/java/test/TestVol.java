@@ -5,10 +5,12 @@ import static org.junit.Assert.assertNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.DaoVol;
@@ -91,6 +93,9 @@ public class TestVol {
 		assertNull(daoVol.findByKey(a.getId()));
 	}
 	
-
+	@Test
+	public void findAllVolWithEscale (){
+		assertNotNull(daoVol.findAllVolWithEscale());
+	}
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,9 +23,11 @@ public class Escale {
 	private EscalePk key;
 	@Column(name="heure_depart")
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern="hh:mm:ss")
 	private Date heureDepart;
 	@Temporal(TemporalType.TIME)
 	@Column(name="heure_arrivee")
+	@DateTimeFormat(pattern="hh:mm:ss")
 	private Date heureArrivee;
 	@Version
 	private int version;

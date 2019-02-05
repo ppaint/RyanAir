@@ -14,4 +14,5 @@ public interface DaoVol extends DaoGeneric<Vol,Long>{
 	public List<Vol> findCompagnieByKeyWithVol(Long key);
 	public List<Vol> findReservationByKeyWithVol(Long key);
 	public Reservation findClientEIByVol (Vol v);
+	public List<Vol> findAllVolWithEscale ();
 }

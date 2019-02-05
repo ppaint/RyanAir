@@ -82,4 +82,9 @@ public class DaoVolJpaImpl implements DaoVol{
 		return (Reservation) query.getSingleResult();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Vol> findAllVolWithEscale (){
+		return em.createQuery("from Vol v left join fetch v.escales e where v.id=e.key.vol.id").getResultList();
+	}
+	
 }

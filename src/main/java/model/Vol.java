@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 @Component
 @Entity
@@ -31,15 +33,19 @@ public class Vol {
 	private long id;
 	@Temporal(TemporalType.TIME)
 	@Column(name="heure_depart")
+	@DateTimeFormat(pattern="hh:mm:ss")
 	private Date heureDepart;
 	@Temporal(TemporalType.TIME)
 	@Column(name="heure_arrivee")
+	@DateTimeFormat(pattern="hh:mm:ss")
 	private Date heureArrivee;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="date_depart")
 	private Date dateDepart;
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_arrivee")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateArrivee;
 	//@Autowired
 	@ManyToOne
