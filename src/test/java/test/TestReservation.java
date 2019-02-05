@@ -105,6 +105,7 @@ public class TestReservation {
 		daoReservation.insert(a);
 		daoReservation.insert(b);
 		assertNotNull(daoReservation.findAll());
+		 
 	}
 
 	@org.junit.Test
@@ -123,7 +124,7 @@ public class TestReservation {
 			e.printStackTrace();
 		}
 		
-		
+	
 			daoPassager.insert(passager1);
 			a.setPassager(passager1);
 		

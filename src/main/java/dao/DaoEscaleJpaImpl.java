@@ -35,16 +35,19 @@ public class DaoEscaleJpaImpl implements DaoEscale {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Escale update(Escale obj) {
 		return em.merge(obj);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Escale obj) {
 		em.remove(em.merge(obj));
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteByKey(Integer key) {
 		em.remove(em.find(Escale.class, key));		
 	}

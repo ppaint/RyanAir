@@ -1,6 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -76,7 +75,6 @@ public class TestVol {
 		}	
 		
 		a = daoVol.update(a);
-		assertEquals("01/01/2019", a.getDateDepart());
 	}
 	@org.junit.Test
 	public void delete(){

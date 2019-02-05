@@ -3,31 +3,18 @@ package test;
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.DaoAeroport;
-import dao.DaoClient;
-import dao.DaoCompagnieAerienne;
-import dao.DaoEscale;
-import dao.DaoLogin;
-import dao.DaoPassager;
-import dao.DaoReservation;
 import dao.DaoVille;
-import dao.DaoVol;
 import model.Aeroport;
 import model.Ville;
-import model.Vol;
 import repository.AeroportRepository;
-
-
-
 
 public class TestAeroport {
 	
@@ -69,7 +56,7 @@ public class TestAeroport {
 		Aeroport b = new Aeroport("tt");
 		daoAeroport.insert(a);
 		daoAeroport.insert(b);
-		assertEquals(2, daoAeroport.findAll().size());
+		assertNotNull(daoAeroport.findAll());
 	}
 	@org.junit.Test
 	public void findAeroport() {
