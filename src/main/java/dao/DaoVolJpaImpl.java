@@ -84,7 +84,14 @@ public class DaoVolJpaImpl implements DaoVol{
 	
 	@SuppressWarnings("unchecked")
 	public List<Vol> findAllVolWithEscale (){
-		return em.createQuery("from Vol v left join fetch v.escales e where v.id=e.key.vol.id").getResultList();
+		return em.createQuery("select distinct(v) from Vol v left join fetch v.escales e order by v.id").getResultList();
 	}
+
+	@Override
+	public Integer countEscales() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 }

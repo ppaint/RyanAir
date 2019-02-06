@@ -1,7 +1,9 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -95,7 +97,12 @@ public class TestVol {
 	
 	@Test
 	public void findAllVolWithEscale (){
-		assertNotNull(daoVol.findAllVolWithEscale());
+		assertEquals(3,(daoVol.findAllVolWithEscale()));
+	}
+	
+	@Test
+	public void countEscales() {
+		assertEquals(1,(daoVol.countEscales()));
 	}
 
 }

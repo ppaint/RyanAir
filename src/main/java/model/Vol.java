@@ -47,11 +47,11 @@ public class Vol {
 	@Column(name="date_arrivee")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateArrivee;
-	//@Autowired
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_arrivee")
 	private Aeroport arrivee;
-	//@Autowired
+	@Autowired
 	@ManyToOne
 	@JoinColumn(name="aeroport_depart")
 	private Aeroport depart;
