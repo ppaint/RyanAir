@@ -2,6 +2,7 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,6 +33,7 @@ public class Reservation {
 	
 	
 	@Column(name = "departureDate", length = 150, nullable = false)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date;
 	
 	
@@ -38,7 +41,7 @@ public class Reservation {
 	private Integer numero;
 	
 	//@Autowired
-	@ManyToOne
+	@ManyToOne (cascade = {CascadeType.ALL})
 	@JoinColumn(name = "passenger")
 	private Passager passager;
 	
@@ -48,7 +51,7 @@ public class Reservation {
 	private Client client;
 	
 	//@Autowired
-	@ManyToOne
+	@ManyToOne (cascade = {CascadeType.ALL})
 	@JoinColumn(name = "fly")
 	private Vol vol;
 

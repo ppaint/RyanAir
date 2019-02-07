@@ -24,7 +24,7 @@ class DaoPassagerJPA implements DaoPassager {
 	}
 
 	@Override
-	public Passager findByKey(Integer key) {
+	public Passager findByKey(Long key) {
 		return em.find(Passager.class, key);
 	}
 
@@ -48,7 +48,7 @@ class DaoPassagerJPA implements DaoPassager {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		em.remove(em.find(Passager.class, key));
 	}
 
