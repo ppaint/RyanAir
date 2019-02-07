@@ -3,12 +3,8 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -100,9 +96,5 @@ public class TestVol {
 		assertEquals(3,(daoVol.findAllVolWithEscale()));
 	}
 	
-	@Test
-	public void countEscales() {
-		assertEquals(1,(daoVol.countEscales()));
-	}
 
 }
